@@ -1,22 +1,46 @@
-import React from 'react';
+import { useState } from 'react';
+import { Cats } from './Cats.js';
+import Cat from './Cat.jsx';
+import Keyboard from './Keyboard.jsx';
 
-export default function Hangman() {
+export default function App() {
+  const [catArray, setCatArray] = useState(Cats);
+  const [currentWord, setCurrentWord] = useState('react');
+
+  const renderWord = currentWord
+    .split('')
+    .map((char, index) => (
+      <span key={index}>{char.toUpperCase()}</span>
+    ));
+
+  const currentCats = catArray.map((cat) => (
+    <Cat
+      key={cat.name}
+      name={cat.name}
+      backgroundColor={cat.backgroundColor}
+      color={cat.color}
+      srcName={cat.srcName}
+    />
+  ));
+
   return (
     <main>
       <section className="gameBoard">
         <header>
-          <h1>Hang In There</h1>
-          <p>Guess the word in under 8 attempts to keep the kitties safe.</p>
+          <h1 className="lobster-regular">Hang In There</h1>
+          <p>
+            Guess the word in under 8 attempts to keep the kitties
+            safe.
+          </p>
         </header>
-        <article className="msg-container"></article>
-        <div className="cat-basket">
-          [cats]
-        </div>
-        <div className="word-div">
-          [letters]
-        </div>
-        <div className="alphabet">
-          [letters]
+        <article className="msg-container">
+          <h2>You Win!</h2>
+          <p> Well Done! 🐟</p>
+        </article>
+        <div className="cats">{currentCats}</div>
+        <div className="word-div">{renderWord}</div>
+        <div className="keyboard">
+          <Keyboard />
         </div>
         <button className="reset">New Game</button>
       </section>
