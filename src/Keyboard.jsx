@@ -3,11 +3,19 @@ export default function Keyboard() {
   const upperKeys = alphabet
     .slice(0, -6)
     .split('')
-    .map((char) => <button className="keys">{char}</button>);
+    .map((char) => (
+      <button key={char} className="keys">
+        {char}
+      </button>
+    ));
   const lowerKeys = alphabet
     .slice(-6)
     .split('')
-    .map((char) => <button className="keys">{char}</button>);
+    .map((char) => (
+      <button key={char} className="keys">
+        {char}
+      </button>
+    ));
 
   return (
     <section className="keyboard">

@@ -35,7 +35,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(112, 97, 112);
+  background-color: #706170;
   padding: 1rem;
   margin: 2rem;
   border-radius: 1rem;
@@ -43,11 +43,13 @@ body {
 
 header {
   text-align: center;
-  max-width: 21rem;
+  max-width: 29rem;
 }
 
 header > h1 {
-  font-size: 1.9rem;
+    margin: 0.75rem;
+  font-size: 4rem;
+  text-shadow: 0px -2px 11px 0px #4e434e;
 }
 
 .msg-container {
@@ -60,6 +62,7 @@ header > h1 {
   justify-content: center;
   align-items: center;
   margin-block: 2rem;
+  box-shadow:  inset 0px 2px 7px 3px#3b4047;
 }
 
 .msg-container > h2 {
@@ -85,6 +88,7 @@ header > h1 {
   width: 4rem;
   height: 4rem;
   border-radius: 30%;
+  box-shadow: 0px -2px 11px 0px #4e434e;
 }
 
 img {
@@ -110,33 +114,75 @@ img {
   border-bottom: 2px solid #a5a594;
   border-radius: 2px 2px 0px 0px;
   background-color: #394d64;
+  box-shadow:  inset 0px 1px 5px 3px#3b4047;
 }
 
 .keyboard {
   margin: 1rem;
 }
 
-button.keys {
-  all: unset;
-  text-align: center;
-  background-color: #be7c3d;
-  height: 2.5rem;
-  width: 2.5rem;
-  border-radius: 5px;
-}
-
 .upper-keys {
   display: grid;
   grid-template-columns: repeat(10, 2.5rem);
-  row-gap: 0.70rem;
-  column-gap: 0.70rem;
+  row-gap: 0.7rem;
+  column-gap: 0.7rem;
 }
 
 .lower-keys {
   display: flex;
   justify-content: center;
-  column-gap: 0.70rem;
-  margin-top: 0.70rem;
+  column-gap: 0.7rem;
+  margin-top: 0.7rem;
+}
+
+button.keys {
+  text-align: center;
+  background: linear-gradient(0deg, #e2cbb5 0%, #be7c3d 40%);
+  height: 2.5rem;
+  width: 2.5rem;
+  border: none;
+  border-radius: 5px;
+  color: #fefee3;
+  font-size: 1.1rem;
+  box-shadow: 0px -2px 11px 0px #4e434e;
+}
+
+button.new-game {
+width: 6.2rem;
+  height: 2.5rem;
+  padding: 0.3rem;
+  background: linear-gradient(0deg, #6f7275 0%, #394d64 20%);
+  border: none;
+  color: #fefee3;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  box-shadow: 0px -2px 11px 0px #4e434e;
+}
+
+button.keys:hover,
+button.new-game:hover {
+  filter: brightness(110%);
+}
+
+button.keys:before,
+button.new-game:before {
+  height: 0%;
+  width: 2px;
+}
+
+button.keys:active {
+  box-shadow: 4px 4px 6px 0 #7c6b7c, -4px -4px 6px 0 #747d8880,
+    inset -4px -4px 6px 0 #ffffff33, inset 4px 4px 6px 0 #3a1d04;
+}
+
+button.new-game:active {
+  box-shadow: 4px 4px 6px 0 #7c6b7c, -4px -4px 6px 0 #747d8880,
+    inset -4px -4px 6px 0 #ffffff33, inset 4px 4px 6px 0 #2d3036;
+}
+
+button {
+  font-family: 'Open Sans', serif;
+  font-weight: 600;
 }
 
 /* .cats {

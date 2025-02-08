@@ -42,7 +42,7 @@ export default function App() {
         <div className="keyboard">
           <Keyboard />
         </div>
-        <button className="reset">New Game</button>
+        <button className="new-game">New Game</button>
       </section>
     </main>
   );
