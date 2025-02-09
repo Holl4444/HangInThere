@@ -6,10 +6,11 @@ import { clsx } from 'clsx';
 
 export default function App() {
   const [catArray, setCatArray] = useState(Cats);
-  const [currentWord, setCurrentWord] = useState('react'.toUpperCase());
+  const [currentWord, setCurrentWord] = useState(
+    'react'.toUpperCase()
+  );
   const [chosenLetters, setChosenLetters] = useState([]);
   const wrongGuessRef = useRef(0);
-
   const wordElement = currentWord
     .split('')
     .map((char, index) => (
@@ -19,12 +20,17 @@ export default function App() {
           : ''}
       </span>
     ));
-
   const wrongGuessCount = chosenLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
 
-  wrongGuessCount > 7 && console.log('Game Over')
+  const isWin = currentWord
+    .split('')
+    .every((letter) => chosenLetters.includes(letter));
+
+  const isLoss = wrongGuessCount > Cats.length - 2;
+
+  const isGameOver = isWin || isLoss;
 
   //Make an array of cats we arent already hiding, including their index in original array
   //Choose one of these cats at random and and the lose class to hide it
@@ -84,32 +90,47 @@ export default function App() {
     }
   }
 
+  function renderMsg() {
+    if (!isGameOver) {
+      return null;
+    }
+    if (isWin) {
+      return (
+        <>
+          <h2>You Win!</h2>
+          <p> Well Done! 🐟</p>
+        </>
+      );
+    }
+    if (isLoss) {
+      return (
+        <>
+          <h2>Game over!</h2>
+          <p>You lose! Better luck next time 🐕‍🦺</p>
+        </>
+      );
+    }
+  }
+
   return (
     <main>
       <section className="gameBoard">
         <header>
           <h1 className="lobster-regular">Hang In There</h1>
           <p>
-            Guess the word in under 8 attempts to take home a kitty. After that you get a pet spider instead.
+            Guess the word in under 8 attempts to take home a kitty.
+            After that you get a pet spider instead.
           </p>
         </header>
         <article
           className={clsx({
             'msg-container': true,
-            fail: wrongGuessCount > 7,
+            hidden: !isGameOver,
+            fail: isLoss,
+            win: isWin,
           })}
         >
-          {wrongGuessCount > 7 ? (
-            <>
-              <h2>Game over!</h2>
-              <p>You lose! Better luck next time 🐕‍🦺</p>
-            </>
-          ) : (
-            <>
-              <h2>You Win!</h2>
-              <p> Well Done! 🐟</p>
-            </>
-          )}
+          {renderMsg()}
         </article>
         <div className="cats">{currentCats}</div>
         <div className="word-div">{wordElement}</div>
@@ -120,7 +141,14 @@ export default function App() {
             word={currentWord}
           />
         </div>
-        <button className="new-game">New Game</button>
+        <button
+          className={clsx({
+            'new-game': true,
+            hidden: !isGameOver,
+          })}
+        >
+          New Game
+        </button>
       </section>
     </main>
   );

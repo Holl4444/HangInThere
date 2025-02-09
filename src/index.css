@@ -47,13 +47,14 @@ header {
 }
 
 header > h1 {
-  margin: 0.75rem;
+  margin: 0.5rem;
   font-size: 4rem;
   text-shadow: 0px -2px 11px 0px #4e434e;
 }
 
 .msg-container {
-  width: 22rem;
+  width: 100%;
+  max-width: 22rem;
   height: 5rem;
   background-color: #394d64;
   border-radius: 1rem;
@@ -61,8 +62,8 @@ header > h1 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-block: 2rem;
-  box-shadow: inset 0px 2px 7px 3px #3b4047;
+  margin-block: 1.3rem;
+  box-shadow: inset 2px 2px 5px 2px #3b4047;
 }
 
 .msg-container.fail {
@@ -70,7 +71,7 @@ header > h1 {
 }
 
 .msg-container.win {
-  background-color: #ffc9b9;
+  background-color: #eca703;
 }
 
 .msg-container > h2 {
@@ -124,14 +125,14 @@ img {
   align-items: center;
   width: 2.5rem;
   height: 2.5rem;
-  border-bottom: 2px solid #a5a594;
+  border-bottom: 3px solid #afaf9b;
   border-radius: 2px 2px 0px 0px;
-  background-color: #394d64;
-  box-shadow: inset 0px 1px 5px 3px #3b4047;
+  background-color: #685968;
+  box-shadow: inset 0px 1px 7px 1px #524452;
 }
 
 .keyboard {
-  margin: 1rem;
+  margin: 0.4rem 0.6rem 0.5rem;
 }
 
 .upper-keys {
@@ -164,12 +165,17 @@ button.new-game {
   width: 6.2rem;
   height: 2.5rem;
   padding: 0.3rem;
-  background: linear-gradient(0deg, #5d6e80 0%, #394d64 40%);
+  background: linear-gradient(0deg, #ebc56e 0%, #eca703 40%);
   border: none;
   color: #fefee3;
   font-size: 0.9rem;
   border-radius: 5px;
   box-shadow: 0px -2px 11px 0px #4e434e;
+  margin-bottom: 0.3rem;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 button.keys:hover,
