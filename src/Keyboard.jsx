@@ -1,20 +1,30 @@
-export default function Keyboard() {
+import Key from './Key.jsx';
+
+export default function Keyboard(props) {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
   const upperKeys = alphabet
     .slice(0, -6)
     .split('')
     .map((char) => (
-      <button key={char} className="keys">
-        {char}
-      </button>
+      <Key
+        fn={props.fn}
+        key={char}
+        name={char}
+        chosen={props.chosen}
+        word={props.word}
+      />
     ));
   const lowerKeys = alphabet
     .slice(-6)
     .split('')
     .map((char) => (
-      <button key={char} className="keys">
-        {char}
-      </button>
+      <Key
+        fn={props.fn}
+        key={char}
+        name={char}
+        chosen={props.chosen}
+        word={props.word}
+      />
     ));
 
   return (

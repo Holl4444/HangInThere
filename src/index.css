@@ -47,7 +47,7 @@ header {
 }
 
 header > h1 {
-    margin: 0.75rem;
+  margin: 0.75rem;
   font-size: 4rem;
   text-shadow: 0px -2px 11px 0px #4e434e;
 }
@@ -62,7 +62,15 @@ header > h1 {
   justify-content: center;
   align-items: center;
   margin-block: 2rem;
-  box-shadow:  inset 0px 2px 7px 3px#3b4047;
+  box-shadow: inset 0px 2px 7px 3px #3b4047;
+}
+
+.msg-container.fail {
+  background-color: #d8623e;
+}
+
+.msg-container.win {
+  background-color: #ffc9b9;
 }
 
 .msg-container > h2 {
@@ -89,6 +97,11 @@ header > h1 {
   height: 4rem;
   border-radius: 30%;
   box-shadow: 0px -2px 11px 0px #4e434e;
+  font-size: min(0);
+}
+
+.cats > button > img.lose {
+  display: none;
 }
 
 img {
@@ -114,7 +127,7 @@ img {
   border-bottom: 2px solid #a5a594;
   border-radius: 2px 2px 0px 0px;
   background-color: #394d64;
-  box-shadow:  inset 0px 1px 5px 3px#3b4047;
+  box-shadow: inset 0px 1px 5px 3px #3b4047;
 }
 
 .keyboard {
@@ -137,7 +150,7 @@ img {
 
 button.keys {
   text-align: center;
-  background: linear-gradient(0deg, #e2cbb5 0%, #be7c3d 40%);
+  background: linear-gradient(0deg, #d3ad89 0%, #be7c3d 40%);
   height: 2.5rem;
   width: 2.5rem;
   border: none;
@@ -148,10 +161,10 @@ button.keys {
 }
 
 button.new-game {
-width: 6.2rem;
+  width: 6.2rem;
   height: 2.5rem;
   padding: 0.3rem;
-  background: linear-gradient(0deg, #6f7275 0%, #394d64 20%);
+  background: linear-gradient(0deg, #5d6e80 0%, #394d64 40%);
   border: none;
   color: #fefee3;
   font-size: 0.9rem;
@@ -183,6 +196,15 @@ button.new-game:active {
 button {
   font-family: 'Open Sans', serif;
   font-weight: 600;
+}
+
+button.keys.letter-right {
+  background: linear-gradient(0deg, #7cdba5 0%, #4c956c 40%);
+}
+
+button.keys.letter-wrong {
+  background: linear-gradient(0deg, #d8623e 0%, #9e4226 50%);
+  color: #3a1d04;
 }
 
 /* .cats {
