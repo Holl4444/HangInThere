@@ -8,7 +8,7 @@ export function getFarewellText(cat) {
   const options = [
     `Farewell, ${cat.name}`,
     `Adios, ${cat.name}`,
-    `R.I.P., ${cat.name}`,
+    `R.I.P, ${cat.name}`,
     `We'll miss you, ${cat.name}`,
     `Oh no, not ${cat.name}!`,
     `${cat.name} bites the dust`,
