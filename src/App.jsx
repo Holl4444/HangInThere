@@ -119,7 +119,7 @@ export default function App() {
   return (
     <main>
       <section className="gameBoard">
-        {isWin && <Confetti />}
+        {isWin && <Confetti recycle={false} numberOfPieces={1000} />}
         <header>
           <h1 className="lobster-regular">Hang In There</h1>
           <p>
