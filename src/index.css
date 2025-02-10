@@ -132,6 +132,10 @@ img {
   box-shadow: inset 0px 1px 7px 1px #524452;
 }
 
+.word-div > span.missed-letter {
+  color: #e95021;
+}
+
 .keyboard {
   margin: 0.4rem 0.6rem 0.5rem;
 }
@@ -226,15 +230,15 @@ button.keys:disabled {
 }
 
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* .cats {

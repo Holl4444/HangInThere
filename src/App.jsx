@@ -4,6 +4,7 @@ import Cat from './Cat.jsx';
 import Keyboard from './Keyboard.jsx';
 import { clsx } from 'clsx';
 import { getFarewellText, getRandomWord } from './utils.js';
+import Confetti from 'react-confetti';
 
 export default function App() {
   const [catArray, setCatArray] = useState(Cats);
@@ -11,26 +12,27 @@ export default function App() {
     getRandomWord().toUpperCase()
   );
   const [chosenLetters, setChosenLetters] = useState([]);
-
-  const wordElement = currentWord
-    .split('')
-    .map((char, index) => (
-      <span key={index}>
-        {chosenLetters.includes(char.toUpperCase())
-          ? char.toUpperCase()
-          : ''}
-      </span>
-    ));
-
   const wrongGuessCount = chosenLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
-
   const isWin = currentWord
     .split('')
     .every((letter) => chosenLetters.includes(letter));
   const isLoss = wrongGuessCount > Cats.length - 2;
   const isGameOver = isWin || isLoss;
+
+  const wordElement = currentWord.split('').map((char, index) => {
+    const revealLetter =
+      chosenLetters.includes(char.toUpperCase()) || isLoss;
+    const letterClassName = clsx({
+      'missed-letter': isLoss && !chosenLetters.includes(char),
+    });
+    return (
+      <span key={index} className={letterClassName}>
+        {revealLetter ? char.toUpperCase() : ''}
+      </span>
+    );
+  });
 
   const lastChosenLetter = chosenLetters[chosenLetters.length - 1];
   const isInputWrong =
@@ -117,6 +119,7 @@ export default function App() {
   return (
     <main>
       <section className="gameBoard">
+        {isWin && <Confetti />}
         <header>
           <h1 className="lobster-regular">Hang In There</h1>
           <p>
