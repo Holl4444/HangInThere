@@ -55,14 +55,14 @@ header > h1 {
 .msg-container {
   width: 100%;
   max-width: 22rem;
-  height: 5rem;
-  background-color: #394d64;
+  height: 4rem;
+  background-color: #873714;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-block: 1.3rem;
+  margin-block: 1rem;
   box-shadow: inset 2px 2px 5px 2px #3b4047;
 }
 
@@ -76,7 +76,8 @@ header > h1 {
 
 .msg-container > h2 {
   font-size: 1.3rem;
-  margin: 0.1rem;
+  margin-bottom: -0.4rem;
+  margin-top: 0.2rem;
 }
 
 .msg-container > p {
@@ -138,15 +139,15 @@ img {
 .upper-keys {
   display: grid;
   grid-template-columns: repeat(10, 2.5rem);
-  row-gap: 0.7rem;
-  column-gap: 0.7rem;
+  row-gap: 0.5rem;
+  column-gap: 0.5rem;
 }
 
 .lower-keys {
   display: flex;
   justify-content: center;
-  column-gap: 0.7rem;
-  margin-top: 0.7rem;
+  column-gap: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 button.keys {
@@ -178,8 +179,8 @@ button.new-game {
   visibility: hidden;
 }
 
-button.keys:hover,
-button.new-game:hover {
+button.keys:hover:enabled,
+button.new-game:hover:enabled {
   filter: brightness(110%);
 }
 
@@ -189,12 +190,12 @@ button.new-game:before {
   width: 2px;
 }
 
-button.keys:active {
+button.keys:active:enabled {
   box-shadow: 4px 4px 6px 0 #7c6b7c, -4px -4px 6px 0 #747d8880,
     inset -4px -4px 6px 0 #ffffff33, inset 4px 4px 6px 0 #3a1d04;
 }
 
-button.new-game:active {
+button.new-game:active:enabled {
   box-shadow: 4px 4px 6px 0 #7c6b7c, -4px -4px 6px 0 #747d8880,
     inset -4px -4px 6px 0 #ffffff33, inset 4px 4px 6px 0 #2d3036;
 }
@@ -202,6 +203,7 @@ button.new-game:active {
 button {
   font-family: 'Open Sans', serif;
   font-weight: 600;
+  cursor: pointer;
 }
 
 button.keys.letter-right {
@@ -211,6 +213,28 @@ button.keys.letter-right {
 button.keys.letter-wrong {
   background: linear-gradient(0deg, #d8623e 0%, #9e4226 50%);
   color: #3a1d04;
+}
+
+button.keys:disabled {
+  cursor: grabbing;
+  opacity: 0.5;
+}
+
+/* How to disable any div (not just inputs /buttons etc) */
+.disabled-div {
+  cursor: grabbing;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* .cats {

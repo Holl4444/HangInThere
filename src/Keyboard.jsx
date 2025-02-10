@@ -1,4 +1,4 @@
-import Key from './Key.jsx';
+import Key from './Key';
 
 export default function Keyboard(props) {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
@@ -12,6 +12,7 @@ export default function Keyboard(props) {
         name={char}
         chosen={props.chosen}
         word={props.word}
+        disabled={props.isGameOver}
       />
     ));
   const lowerKeys = alphabet
@@ -24,6 +25,7 @@ export default function Keyboard(props) {
         name={char}
         chosen={props.chosen}
         word={props.word}
+        disabled={props.isGameOver}
       />
     ));
 

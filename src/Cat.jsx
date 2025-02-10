@@ -5,6 +5,7 @@ export default function Cat(props) {
     backgroundColor: props.backgroundColor,
     color: props.color,
   };
+
   return (
     <button name={props.name} style={styles}>
       <img

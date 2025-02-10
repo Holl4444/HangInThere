@@ -1,16 +1,17 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState } from 'react';
 import { Cats } from './Cats.js';
 import Cat from './Cat.jsx';
 import Keyboard from './Keyboard.jsx';
 import { clsx } from 'clsx';
+import { getFarewellText, getRandomWord } from './utils.js';
 
 export default function App() {
   const [catArray, setCatArray] = useState(Cats);
-  const [currentWord, setCurrentWord] = useState(
-    'react'.toUpperCase()
+  const [currentWord, setCurrentWord] = useState(() =>
+    getRandomWord().toUpperCase()
   );
   const [chosenLetters, setChosenLetters] = useState([]);
-  const wrongGuessRef = useRef(0);
+
   const wordElement = currentWord
     .split('')
     .map((char, index) => (
@@ -20,6 +21,7 @@ export default function App() {
           : ''}
       </span>
     ));
+
   const wrongGuessCount = chosenLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
@@ -27,78 +29,78 @@ export default function App() {
   const isWin = currentWord
     .split('')
     .every((letter) => chosenLetters.includes(letter));
-
   const isLoss = wrongGuessCount > Cats.length - 2;
-
   const isGameOver = isWin || isLoss;
 
-  //Make an array of cats we arent already hiding, including their index in original array
-  //Choose one of these cats at random and and the lose class to hide it
-  const loseCat = useCallback(() => {
-    const remainingCats = catArray
-      .map((cat, index) =>
-        cat.className &&
-        !cat.className.includes('lose') &&
-        !cat.className.includes('spider')
-          ? { cat, index: index }
-          : null
-      )
-      .filter(Boolean);
-
-    if (remainingCats.length === 0) {
-      return; // Ensure there are remaining cats
-    }
-
-    const randomCatIndx =
-      remainingCats[Math.floor(Math.random() * remainingCats.length)]
-        .index;
-
-    setCatArray(
-      catArray.map((prev, index) =>
-        index === randomCatIndx
-          ? { ...prev, className: `${prev.className} lose` }
-          : prev
-      )
-    );
-  }, [catArray]);
-
-  useEffect(() => {
-    if (wrongGuessCount > wrongGuessRef.current) {
-      loseCat();
-    }
-    wrongGuessRef.current = wrongGuessCount;
-  }, [wrongGuessCount, loseCat]);
-
-  const currentCats = catArray.map((cat) => (
-    <Cat
-      key={cat.name}
-      name={cat.name}
-      backgroundColor={cat.backgroundColor}
-      color={cat.color}
-      srcName={cat.srcName}
-      className={clsx({
-        cat: true,
-        lose: cat.className.includes('lose'),
-      })}
-    />
-  ));
+  const lastChosenLetter = chosenLetters[chosenLetters.length - 1];
+  const isInputWrong =
+    lastChosenLetter && !currentWord.includes(lastChosenLetter);
 
   function addChosenLetter(e) {
     const letter = e.target.name;
-    if (!chosenLetters.includes(letter)) {
-      setChosenLetters((chosenLetters) => [...chosenLetters, letter]);
+    if (chosenLetters.includes(letter) || isGameOver) return;
+
+    setChosenLetters((prev) => [...prev, letter]);
+
+    if (!currentWord.includes(letter)) {
+      const remainingCats = catArray
+        .map((cat, index) =>
+          cat.className &&
+          !cat.className.includes('lose') &&
+          !cat.className.includes('spider')
+            ? { cat, index }
+            : null
+        )
+        .filter(Boolean);
+
+      if (remainingCats.length > 0) {
+        const randomCatIdx =
+          remainingCats[
+            Math.floor(Math.random() * remainingCats.length)
+          ].index;
+
+        setCatArray((prev) =>
+          prev.map((cat, index) =>
+            index === randomCatIdx
+              ? {
+                  ...cat,
+                  className: `${cat.className} lose`,
+                  lost: true,
+                }
+              : { ...cat, lost: false }
+          )
+        );
+      }
     }
   }
 
+  function resetGame() {
+    setCurrentWord(getRandomWord().toUpperCase());
+    setCatArray(Cats);
+    setChosenLetters([]);
+  }
+
   function renderMsg() {
+    const lostCat = catArray.find((cat) => cat.lost);
+    const farewellMsg = lostCat && getFarewellText(lostCat);
+
     if (!isGameOver) {
-      return null;
+      if (isInputWrong) {
+        return (
+          <>
+            <h2></h2>
+            <p>{farewellMsg}</p>
+          </>
+        );
+      } else {
+        return null;
+      }
     }
     if (isWin) {
       return (
         <>
           <h2>You Win!</h2>
-          <p> Well Done! 🐟</p>
+          <p>Well Done! 🐟</p>
         </>
       );
     }
@@ -106,7 +108,7 @@ export default function App() {
       return (
         <>
           <h2>Game over!</h2>
-          <p>You lose! Better luck next time 🐕‍🦺</p>
+          <p>You lose! Enjoy your pet spider! 🕷️🕸️</p>
         </>
       );
     }
@@ -122,30 +124,73 @@ export default function App() {
             After that you get a pet spider instead.
           </p>
         </header>
-        <article
+        <section
           className={clsx({
             'msg-container': true,
-            hidden: !isGameOver,
+            hidden: !isGameOver && !isInputWrong,
             fail: isLoss,
             win: isWin,
           })}
+          aria-live="polite"
+          role="messages"
         >
           {renderMsg()}
-        </article>
-        <div className="cats">{currentCats}</div>
-        <div className="word-div">{wordElement}</div>
-        <div className="keyboard">
+        </section>
+        <section className="cats">
+          {catArray.map((cat) => (
+            <Cat
+              key={cat.name}
+              name={cat.name}
+              backgroundColor={cat.backgroundColor}
+              color={cat.color}
+              srcName={cat.srcName}
+              lost={cat.lost}
+              className={clsx({
+                cat: true,
+                lose: cat.className.includes('lose'),
+              })}
+            />
+          ))}
+        </section>
+        <section className="word-div">{wordElement}</section>
+        <section
+          className="sr-only"
+          aria-live="polite"
+          role="messages"
+        >
+          <p>
+            {currentWord.includes(lastChosenLetter)
+              ? `Correct! The letter ${lastChosenLetter} is in the word.`
+              : `Sorry, ${lastChosenLetter} isn't in the word.`}
+            You have {Cats.length - 1 - wrongGuessCount} attempts
+            remaining.
+          </p>
+          <p>
+            Current word:
+            {currentWord
+              .split('')
+              .map((letter) =>
+                chosenLetters.includes(letter)
+                  ? letter + '.'
+                  : 'blank.'
+              )
+              .join('')}
+          </p>
+        </section>
+        <section className="keyboard">
           <Keyboard
             fn={addChosenLetter}
             chosen={chosenLetters}
             word={currentWord}
+            isGameOver={isGameOver}
           />
-        </div>
+        </section>
         <button
           className={clsx({
             'new-game': true,
             hidden: !isGameOver,
           })}
+          onClick={resetGame}
         >
           New Game
         </button>
@@ -153,47 +198,3 @@ export default function App() {
     </main>
   );
 }
-
-/**
- * Project planning:
- *
- * Questions to ask yourself before writing any code:
- *
- * - What are the main containers of elements I need
- *   in this app?
- * Board
- *  - Intro
- *      - Title
- *      - Instruction
- *  - Message container
- *      - Message
- *  - Victim Container
- *      - Victims
- *  - Word
- *      - Letters
- *  - Keyboard
- *      - Keys A-Z
- *  - Reset
- *
- *
- * - What values will need to be saved in state vs.
- *   what values can be derived from the state?
- *
- *      State of the word
- *      State of the victims
- *
- * - How will the user interact with the app? What
- *   events do I need to handle?
- *
- *      New Game Button
- *      Letter Choice
- *      Victim status indicator
- *      Letter checked status indicator
- *      Win / Loss Message
- *
- * setCatArray:
- *  On wrongGuess, of the cats without the class lose
- * (cat, index) add the class lose to a random index
- *
- *
- */
