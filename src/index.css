@@ -102,13 +102,16 @@ header > h1 {
   font-size: min(0);
 }
 
-.cats > button > img.lose {
-  display: none;
+/* Use instead if want backgrounds to show */
+/* .cats > button > img.lose {
+  visibility: hidden;
+} */
+
+/* use display: none for flexed layout */
+.cats > button.lose {
+  visibility: hidden;
 }
 
-.cats > button.lose {
-  display: none;
-}
 
 img {
   width: 100%;

@@ -6,6 +6,13 @@ import { clsx } from 'clsx';
 import { getFarewellText, getRandomWord } from './utils.js';
 import Confetti from 'react-confetti';
 
+/*TODO
+Transition cat disappearance
+Enlarge and centre spider img on isLoss
+Add sounds
+*/
+
+
 export default function App() {
   const [catArray, setCatArray] = useState(Cats);
   const [currentWord, setCurrentWord] = useState(() =>
