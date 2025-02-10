@@ -106,6 +106,10 @@ header > h1 {
   display: none;
 }
 
+.cats > button.lose {
+  display: none;
+}
+
 img {
   width: 100%;
   height: 100%;

@@ -7,7 +7,11 @@ export default function Cat(props) {
   };
 
   return (
-    <button name={props.name} style={styles}>
+    <button
+      className={props.className}
+      name={props.name}
+      style={styles}
+    >
       <img
         src={`${props.srcName}.png`}
         alt={`A cat named ${props.name}.`}
