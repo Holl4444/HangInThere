@@ -292,6 +292,7 @@ button.keys:disabled {
 
   .lower-keys {
     column-gap: 0.3rem;
+    margin-top: 0.3rem;
   }
 }
 
