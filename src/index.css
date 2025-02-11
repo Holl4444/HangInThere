@@ -112,7 +112,6 @@ header > h1 {
   visibility: hidden;
 }
 
-
 img {
   width: 100%;
   height: 100%;
@@ -246,6 +245,12 @@ button.keys:disabled {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  [class*='col-'] {
+    width: 100%;
+  }
 }
 
 /* .cats {
