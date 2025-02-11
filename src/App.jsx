@@ -12,7 +12,6 @@ Enlarge and centre spider img on isLoss
 Add sounds
 */
 
-
 export default function App() {
   const [catArray, setCatArray] = useState(Cats);
   const [currentWord, setCurrentWord] = useState(() =>
@@ -124,87 +123,79 @@ export default function App() {
   }
 
   return (
-    <main>
-      <section className="gameBoard">
-        {isWin && <Confetti recycle={false} numberOfPieces={1000} />}
-        <header>
-          <h1 className="lobster-regular">Hang In There</h1>
-          <p>
-            Guess the word in under 8 attempts to take home a kitty.
-            After that you get a pet spider instead.
-          </p>
-        </header>
-        <section
-          className={clsx({
-            'msg-container': true,
-            hidden: !isGameOver && !isInputWrong,
-            fail: isLoss,
-            win: isWin,
-          })}
-          aria-live="polite"
-          role="messages"
-        >
-          {renderMsg()}
-        </section>
-        <section className="cats">
-          {catArray.map((cat) => (
-            <Cat
-              key={cat.name}
-              name={cat.name}
-              backgroundColor={cat.backgroundColor}
-              color={cat.color}
-              srcName={cat.srcName}
-              lost={cat.lost}
-              className={clsx({
-                cat: true,
-                lose: cat.className.includes('lose'),
-              })}
-            />
-          ))}
-        </section>
-        <section className="word-div">{wordElement}</section>
-        <section
-          className="sr-only"
-          aria-live="polite"
-          role="messages"
-        >
-          <p>
-            {currentWord.includes(lastChosenLetter)
-              ? `Correct! The letter ${lastChosenLetter} is in the word.`
-              : `Sorry, ${lastChosenLetter} isn't in the word.`}
-            You have {Cats.length - 1 - wrongGuessCount} attempts
-            remaining.
-          </p>
-          <p>
-            Current word:
-            {currentWord
-              .split('')
-              .map((letter) =>
-                chosenLetters.includes(letter)
-                  ? letter + '.'
-                  : 'blank.'
-              )
-              .join('')}
-          </p>
-        </section>
-        <section className="keyboard">
-          <Keyboard
-            fn={addChosenLetter}
-            chosen={chosenLetters}
-            word={currentWord}
-            isGameOver={isGameOver}
-          />
-        </section>
-        <button
-          className={clsx({
-            'new-game': true,
-            hidden: !isGameOver,
-          })}
-          onClick={resetGame}
-        >
-          New Game
-        </button>
+    <section className="gameBoard">
+      {isWin && <Confetti recycle={false} numberOfPieces={1000} />}
+      <header>
+        <h1 className="lobster-regular">Hang In There</h1>
+        <p>
+          Guess the word in under 8 attempts to take home a kitty.
+          After that you get a pet spider instead.
+        </p>
+      </header>
+      <section
+        className={clsx({
+          'msg-container': true,
+          hidden: !isGameOver && !isInputWrong,
+          fail: isLoss,
+          win: isWin,
+        })}
+        aria-live="polite"
+        role="messages"
+      >
+        {renderMsg()}
       </section>
-    </main>
+      <section className="cats">
+        {catArray.map((cat) => (
+          <Cat
+            key={cat.name}
+            name={cat.name}
+            backgroundColor={cat.backgroundColor}
+            color={cat.color}
+            srcName={cat.srcName}
+            lost={cat.lost}
+            className={clsx({
+              cat: true,
+              lose: cat.className.includes('lose'),
+            })}
+          />
+        ))}
+      </section>
+      <section className="word-div">{wordElement}</section>
+      <section className="sr-only" aria-live="polite" role="messages">
+        <p>
+          {currentWord.includes(lastChosenLetter)
+            ? `Correct! The letter ${lastChosenLetter} is in the word.`
+            : `Sorry, ${lastChosenLetter} isn't in the word.`}
+          You have {Cats.length - 1 - wrongGuessCount} attempts
+          remaining.
+        </p>
+        <p>
+          Current word:
+          {currentWord
+            .split('')
+            .map((letter) =>
+              chosenLetters.includes(letter) ? letter + '.' : 'blank.'
+            )
+            .join('')}
+        </p>
+      </section>
+      <section className="keyboard">
+        <Keyboard
+          fn={addChosenLetter}
+          chosen={chosenLetters}
+          word={currentWord}
+          isGameOver={isGameOver}
+        />
+      </section>
+      <button
+        className={clsx({
+          'new-game': true,
+          hidden: !isGameOver,
+        })}
+        onClick={resetGame}
+      >
+        New Game
+      </button>
+    </section>
   );
 }
