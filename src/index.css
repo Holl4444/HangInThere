@@ -29,8 +29,6 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  max-width: 100%;
-  max-height: 100%;
 }
 
 #root {
@@ -134,6 +132,7 @@ img {
   font-size: 1.5rem;
   column-gap: 0.2rem;
   margin: 1.5rem;
+  max-width: 100%;
 }
 
 .word-div > span {
@@ -278,6 +277,10 @@ button.keys:disabled {
 }
 
 @media only screen and (max-width: 450px) {
+  .gameBoard {
+    max-height: 50%;
+  }
+
   header > h1 {
     font-size: 3rem;
   }
