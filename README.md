@@ -54,6 +54,7 @@ JS - JSX - HTML - CSS - REACT - VITE
 ## Continued Development
 
 - Linking to an API to pull word lists in.
+- Counter to track turns left before spider.
 - Making the app more engaging: adding a transition to make losing a cat more obvious, enlarging and centering the spider on loss and adding sounds.
 - If the app gets any larger, to try createContext.
 - Improved styling for different devices. 
