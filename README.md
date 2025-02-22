@@ -46,7 +46,7 @@ JS - JSX - HTML - CSS - REACT - VITE
 
 ## Key Skills Employed
 
-- Interatively planning before coding.
+- Iteratively planning before coding.
 - Prop Drilling and controlling state.
 - Understanding file structure.
 - It was fascinating to learn a little more about accessibility (aria-labels, aria-live, and "sr-only" sections). I'll have to look more into this, as well as learning about contrasting colours.
