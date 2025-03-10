@@ -11,7 +11,7 @@
 ## Overview
 
 Based on the final Capstone project in Scrimba's Learn React Course.
-The aim is to solve the word puzzle and choose a cat, before the only animal left is a spider (8 moves).
+The aim is to solve the word puzzle and choose a cat, before the only pet choice remaining is a spider (8 moves).
 With unlimited resources I'd like to have the cats hanging as in the notorious posters and falling when you guess incorrectly in case anyone was wondering about the name!
 
 ## Screenshots
