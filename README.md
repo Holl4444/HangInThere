@@ -16,7 +16,7 @@ With unlimited resources I'd like to have the cats hanging as in the notorious p
 
 ## Screenshots
 
-startScreen\
+Start Screen\
 ![startScreen](https://github.com/user-attachments/assets/0b22ac49-0a7a-4b89-9e8b-ed0363666e23)
 
 Farewell message and key styling on negative guess.\
