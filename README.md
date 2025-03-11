@@ -6,16 +6,16 @@
 
 [Overview](#overview)\
 [Screenshots](#screenshots)\
-[Links](#links)\
 [The Process](#the-process)\
-[Built With](#built-with)
+[Built With](#built-with)\
+[Key Skills](#key-skills-employed)\
+[Continued Development](#continued-development)
 
 
 ## Overview
-
-Based on the final Capstone project in Scrimba's Learn React Course.
 The aim is to solve the word puzzle and choose a cat, before the only pet choice remaining is a spider (8 moves).
 With unlimited resources I'd like to have the cats hanging as in the notorious posters and falling when you guess incorrectly - in case anyone was wondering about the name!
+Based on the final Capstone project in Scrimba's Learn React Course.
 
 ## Screenshots
 
@@ -34,11 +34,6 @@ Loss\
 Win\
 ![win](https://github.com/user-attachments/assets/6b5445ff-7d1e-4c70-9f65-6c5431b0afe8)
 
-
-## Links
-
-Scrimba Course
-https://scrimba.com/learn-react-c0e
 
 ## The Process
 
@@ -62,3 +57,4 @@ JS - JSX - HTML - CSS - REACT - VITE
 - If the app gets any larger, to try createContext.
 - Improved styling for different devices. 
 - To organise the folder structure.
+
