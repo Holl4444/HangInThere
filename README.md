@@ -36,7 +36,7 @@ Win\
 
 
 ## The Process
-
+I really struggled to find a free API with sufficient parameters like flexible length, british english spelling and reading level. The API results are currently more suited to a young hearted adult player rather than the younger age range I had initially envisioned.
 
 ## Built With
 
@@ -51,7 +51,8 @@ JS - JSX - HTML - CSS - REACT - VITE
 
 ## Continued Development
 
-- Linking to an API to pull word lists in.
+- Linking to an API to pull word lists in. ✔️
+- Add new word option while mid game.
 - Counter to track turns left before spider.
 - Making the app more engaging: adding a transition to make losing a cat more obvious, enlarging and centering the spider on loss and adding sounds.
 - If the app gets any larger, to try createContext.
