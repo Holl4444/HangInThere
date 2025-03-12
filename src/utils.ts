@@ -1,5 +1,31 @@
 import { words } from './words';
 
+const MIN_WORD_LENGTH = 5;
+const MAX_WORD_LENGTH = 9;
+
+export async function getRandomApiWord(): Promise<
+  string | null
+> {
+  const wordLength = Math.floor(
+    Math.random() * (MAX_WORD_LENGTH - MIN_WORD_LENGTH + 1) +
+      MIN_WORD_LENGTH
+  );
+  const url = `https://random-word-api.herokuapp.com/word?length=${wordLength}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Error contacting API: ${response.status}`);
+    }
+    const wordArray = await response.json();
+    const word = wordArray[0];
+    console.log(word);
+    return word;
+  } catch (err) {
+    console.error(`Error: `, err);
+    return null; // Helps make conditional logic easier for fallback word.
+  }
+}
+
 export function getRandomWord() {
   return words[Math.floor(Math.random() * words.length)];
 }

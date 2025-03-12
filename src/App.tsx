@@ -1,16 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Cats, CatProps } from './Cats';
 import Cat from './Cat';
 import Keyboard from './Keyboard';
 import { clsx } from 'clsx';
-import { getFarewellText, getRandomWord } from './utils';
+import { getFarewellText, getRandomWord, getRandomApiWord } from './utils';
 import Confetti from 'react-confetti';
 
 /*TODO
+Word API
 Transition cat disappearance
 Enlarge and centre spider img on isLoss
 Add sounds
 */
+
 type Letter = string;
 interface RemainingCat {
   cat: CatProps;
@@ -23,20 +25,36 @@ export type HandleLetterClick = (
 
 export default function App() {
   const [catArray, setCatArray] = useState<CatProps[]>(Cats);
-  const [currentWord, setCurrentWord] = useState(() =>
-    getRandomWord().toUpperCase()
-  );
+  //Await randomApiWord. If return null then use getRandomWord
+  const [currentWord, setCurrentWord] = useState(() => getRandomWord().toUpperCase());
   const [chosenLetters, setChosenLetters] = useState<Letter[]>([]);
+
+  useEffect(() => {
+    async function loadApiWord() {
+      try {
+        const apiWord = await getRandomApiWord();
+        if (apiWord) {
+          setCurrentWord(apiWord.toUpperCase());
+        }
+      } catch (err) {
+        console.error('Error loading API word:', err);
+        // Current word is already set to local word as fallback
+      }
+    }
+   
+    loadApiWord();
+  }, []);
+
   const wrongGuessCount = chosenLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
   const isWin = currentWord
     .split('')
-    .every((letter) => chosenLetters.includes(letter));
+    .every((letter: Letter) => chosenLetters.includes(letter));
   const isLoss = wrongGuessCount > Cats.length - 2;
   const isGameOver = isWin || isLoss;
 
-  const wordElement = currentWord.split('').map((char, index) => {
+  const wordElement = currentWord.split('').map((char: Letter, index: number) => {
     const revealLetter =
       chosenLetters.includes(char.toUpperCase()) || isLoss;
     const letterClassName = clsx({
@@ -94,10 +112,23 @@ export default function App() {
     }
   };
 
-  function resetGame() {
-    setCurrentWord(getRandomWord().toUpperCase());
+  async function resetGame() {
     setCatArray(Cats);
     setChosenLetters([]);
+    // Try to get a new word from API first
+    try {
+      const apiWord = await getRandomApiWord();
+      if (apiWord) {
+        setCurrentWord(apiWord.toUpperCase());
+      } else {
+        // Fall back to local word if API fails or returns null
+        setCurrentWord(getRandomWord().toUpperCase());
+      }
+    } catch (err) {
+      console.error('Error loading API word for new game:', err);
+      // Use local word on error
+      setCurrentWord(getRandomWord().toUpperCase());
+    }
   }
 
   function renderMsg() {
@@ -185,7 +216,7 @@ export default function App() {
           Current word:
           {currentWord
             .split('')
-            .map((letter) =>
+            .map((letter: Letter) =>
               chosenLetters.includes(letter) ? letter + '.' : 'blank.'
             )
             .join('')}
