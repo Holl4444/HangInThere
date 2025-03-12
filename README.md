@@ -1,22 +1,25 @@
 # Hang In There
+
+![image](https://github.com/user-attachments/assets/aaa0c2d9-a5c7-466c-bf8b-7616f6d76c45)
+
 ## A Hangman Game - (eventually) with cats.
 
 [Overview](#overview)\
 [Screenshots](#screenshots)\
-[Links](#links)\
 [The Process](#the-process)\
-[Built With](#built-with)
+[Built With](#built-with)\
+[Key Skills](#key-skills-employed)\
+[Continued Development](#continued-development)
 
 
 ## Overview
-
+The aim is to solve the word puzzle and choose a cat, before the only pet choice remaining is a spider (8 moves).
+With unlimited resources I'd like to have the cats hanging as in the notorious posters and falling when you guess incorrectly - in case anyone was wondering about the name!
 Based on the final Capstone project in Scrimba's Learn React Course.
-The aim is to solve the word puzzle and choose a cat, before the only animal left is a spider (8 moves).
-With unlimited resources I'd like to have the cats hanging as in the notorious posters and falling when you guess incorrectly in case anyone was wondering about the name!
 
 ## Screenshots
 
-startScreen\
+Start Screen\
 ![startScreen](https://github.com/user-attachments/assets/0b22ac49-0a7a-4b89-9e8b-ed0363666e23)
 
 Farewell message and key styling on negative guess.\
@@ -32,11 +35,6 @@ Win\
 ![win](https://github.com/user-attachments/assets/6b5445ff-7d1e-4c70-9f65-6c5431b0afe8)
 
 
-## Links
-
-Scrimba Course
-https://scrimba.com/learn-react-c0e
-
 ## The Process
 
 
@@ -46,7 +44,7 @@ JS - JSX - HTML - CSS - REACT - VITE
 
 ## Key Skills Employed
 
-- Interatively planning before coding.
+- Iteratively planning before coding.
 - Prop Drilling and controlling state.
 - Understanding file structure.
 - It was fascinating to learn a little more about accessibility (aria-labels, aria-live, and "sr-only" sections). I'll have to look more into this, as well as learning about contrasting colours.
@@ -54,7 +52,9 @@ JS - JSX - HTML - CSS - REACT - VITE
 ## Continued Development
 
 - Linking to an API to pull word lists in.
+- Counter to track turns left before spider.
 - Making the app more engaging: adding a transition to make losing a cat more obvious, enlarging and centering the spider on loss and adding sounds.
 - If the app gets any larger, to try createContext.
 - Improved styling for different devices. 
 - To organise the folder structure.
+
