@@ -1,11 +1,5 @@
-interface CatProps {
-  backgroundColor: string;
-  color: string;
-  className: string;
-  name: string;
-  srcName: string;
-}
-
+import { CatProps } from './Cats';
+;
 export default function Cat({
   backgroundColor,
   color,

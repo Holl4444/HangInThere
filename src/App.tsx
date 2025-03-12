@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Cats } from './Cats.js';
-import Cat from './Cat.js';
-import Keyboard from './Keyboard.js';
+import { Cats, CatProps } from './Cats.ts';
+import Cat from './Cat.ts';
+import Keyboard from './Keyboard.tsx';
 import { clsx } from 'clsx';
-import { getFarewellText, getRandomWord } from './utils.js';
+import { getFarewellText, getRandomWord } from './utils.ts';
 import Confetti from 'react-confetti';
 
 /*TODO
@@ -11,16 +11,21 @@ Transition cat disappearance
 Enlarge and centre spider img on isLoss
 Add sounds
 */
+type Letter = string;
+interface RemainingCat {
+  cat: CatProps;
+  index: number;
+}
 
 export default function App() {
     const throwError = () => {
       throw new Error('Test Error');
     };
-  const [catArray, setCatArray] = useState(Cats);
+  const [catArray, setCatArray] = useState<CatProps[]>(Cats);
   const [currentWord, setCurrentWord] = useState(() =>
     getRandomWord().toUpperCase()
   );
-  const [chosenLetters, setChosenLetters] = useState([]);
+  const [chosenLetters, setChosenLetters] = useState<Letter[]>([]);
   const wrongGuessCount = chosenLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
@@ -47,12 +52,16 @@ export default function App() {
   const isInputWrong =
     lastChosenLetter && !currentWord.includes(lastChosenLetter);
 
-  function addChosenLetter(e) {
-    const letter = e.target.name;
+  //Have to be much more specific in ts (this is basically (e) and e.target.name)
+  function addChosenLetter(e: React.MouseEvent<HTMLButtonElement>) {
+    const button = e.target as HTMLButtonElement;
+    const letter = button.name as Letter;
     if (chosenLetters.includes(letter) || isGameOver) return;
 
     setChosenLetters((prev) => [...prev, letter]);
 
+    /*Look at all cats and find those that: haven't lost yet + aren't the spider.
+      Track their position and make a list of only these available cats*/
     if (!currentWord.includes(letter)) {
       const remainingCats = catArray
         .map((cat, index) =>
@@ -62,7 +71,7 @@ export default function App() {
             ? { cat, index }
             : null
         )
-        .filter(Boolean);
+        .filter(Boolean) as RemainingCat[]; // removes all null cats and tells TS these are all RemainingCat types now.
 
       if (remainingCats.length > 0) {
         const randomCatIdx =

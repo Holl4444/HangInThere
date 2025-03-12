@@ -1,4 +1,13 @@
-export const Cats = [
+export interface CatProps {
+  name: string;
+  backgroundColor: string;
+  color: string;
+  srcName: string;
+  className: string;
+  lost?: boolean; // Added when cat removed
+}
+
+export const Cats: CatProps[] = [
   {
     name: 'Kenneth',
     backgroundColor: '#c0a33f',
