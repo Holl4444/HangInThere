@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Cats } from './Cats.js';
-import Cat from './Cat.jsx';
-import Keyboard from './Keyboard.jsx';
+import Cat from './Cat.js';
+import Keyboard from './Keyboard.js';
 import { clsx } from 'clsx';
 import { getFarewellText, getRandomWord } from './utils.js';
 import Confetti from 'react-confetti';
@@ -13,6 +13,9 @@ Add sounds
 */
 
 export default function App() {
+    const throwError = () => {
+      throw new Error('Test Error');
+    };
   const [catArray, setCatArray] = useState(Cats);
   const [currentWord, setCurrentWord] = useState(() =>
     getRandomWord().toUpperCase()
@@ -124,6 +127,7 @@ export default function App() {
 
   return (
     <section className="gameBoard">
+      <button onClick={throwError}>Test Sentry</button>
       {isWin && <Confetti recycle={false} numberOfPieces={1000} />}
       <header>
         <h1 className="lobster-regular">Hang In There</h1>
