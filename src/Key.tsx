@@ -1,9 +1,17 @@
-import { clsx } from 'clsx';
+import { clsx } from 'clsx'; // Allows conditional classNaming
+import { HandleLetterClick } from './App';
+interface KeyProps {
+  fn: HandleLetterClick;
+  name: string;
+  chosen: string[];
+  word: string;
+  disabled: boolean;
+}
 
-export default function Key(props) {
-  const isChosen = props.chosen.includes(props.name);
-  const isCorrect = isChosen && props.word.includes(props.name);
-  const isWrong = isChosen && !props.word.includes(props.name);
+export default function Key({ fn, name, chosen, word, disabled }: KeyProps) {
+  const isChosen = chosen.includes(name);
+  const isCorrect = isChosen && word.includes(name);
+  const isWrong = isChosen && !word.includes(name);
 
   const className = clsx({
     keys: true,
@@ -11,15 +19,15 @@ export default function Key(props) {
     'letter-wrong': isWrong,
   });
 
+   // Already has a key prop. This button inside every key is a single element not a list.
   return (
     <button
-      key={props.name}
-      name={props.name}
+      name={name}
       className={className}
-      onClick={props.fn}
-      disabled={props.disabled || isChosen}
+      onClick={fn}
+      disabled={disabled || isChosen}
     >
-      {props.name}
+      {name}
     </button>
   );
 }

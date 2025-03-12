@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Cats, CatProps } from './Cats.ts';
-import Cat from './Cat.ts';
-import Keyboard from './Keyboard.tsx';
+import { Cats, CatProps } from './Cats';
+import Cat from './Cat';
+import Keyboard from './Keyboard';
 import { clsx } from 'clsx';
-import { getFarewellText, getRandomWord } from './utils.ts';
+import { getFarewellText, getRandomWord } from './utils';
 import Confetti from 'react-confetti';
 
 /*TODO
@@ -16,6 +16,10 @@ interface RemainingCat {
   cat: CatProps;
   index: number;
 }
+
+export type HandleLetterClick = (
+  e: React.MouseEvent<HTMLButtonElement>
+) => void;
 
 export default function App() {
     const throwError = () => {
@@ -52,8 +56,7 @@ export default function App() {
   const isInputWrong =
     lastChosenLetter && !currentWord.includes(lastChosenLetter);
 
-  //Have to be much more specific in ts (this is basically (e) and e.target.name)
-  function addChosenLetter(e: React.MouseEvent<HTMLButtonElement>) {
+  const addChosenLetter: HandleLetterClick = (e) => {
     const button = e.target as HTMLButtonElement;
     const letter = button.name as Letter;
     if (chosenLetters.includes(letter) || isGameOver) return;
@@ -66,8 +69,8 @@ export default function App() {
       const remainingCats = catArray
         .map((cat, index) =>
           cat.className &&
-          !cat.className.includes('lose') &&
-          !cat.className.includes('spider')
+            !cat.className.includes('lose') &&
+            !cat.className.includes('spider')
             ? { cat, index }
             : null
         )
@@ -83,16 +86,16 @@ export default function App() {
           prev.map((cat, index) =>
             index === randomCatIdx
               ? {
-                  ...cat,
-                  className: `${cat.className} lose`,
-                  lost: true,
-                }
+                ...cat,
+                className: `${cat.className} lose`,
+                lost: true,
+              }
               : { ...cat, lost: false }
           )
         );
       }
     }
-  }
+  };
 
   function resetGame() {
     setCurrentWord(getRandomWord().toUpperCase());
@@ -136,7 +139,6 @@ export default function App() {
 
   return (
     <section className="gameBoard">
-      <button onClick={throwError}>Test Sentry</button>
       {isWin && <Confetti recycle={false} numberOfPieces={1000} />}
       <header>
         <h1 className="lobster-regular">Hang In There</h1>

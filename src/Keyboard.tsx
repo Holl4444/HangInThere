@@ -1,18 +1,26 @@
 import Key from './Key';
+import { HandleLetterClick } from './App';
 
-export default function Keyboard(props) {
+export interface KeyboardProps{    
+  fn: HandleLetterClick
+  chosen: string[],
+  word: string;
+  isGameOver: boolean,
+}
+
+export default function Keyboard({fn, chosen, word, isGameOver}: KeyboardProps) { 
   const alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
   const upperKeys = alphabet
     .slice(0, -6)
     .split('')
     .map((char) => (
       <Key
-        fn={props.fn}
+        fn={fn}
         key={char}
         name={char}
-        chosen={props.chosen}
-        word={props.word}
-        disabled={props.isGameOver}
+        chosen={chosen}
+        word={word}
+        disabled={isGameOver}
       />
     ));
   const lowerKeys = alphabet
@@ -20,12 +28,12 @@ export default function Keyboard(props) {
     .split('')
     .map((char) => (
       <Key
-        fn={props.fn}
+        fn={fn}
         key={char}
         name={char}
-        chosen={props.chosen}
-        word={props.word}
-        disabled={props.isGameOver}
+        chosen={chosen}
+        word={word}
+        disabled={isGameOver}
       />
     ));
 
