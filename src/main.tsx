@@ -23,7 +23,8 @@ Sentry.init({
   replaysOnErrorSampleRate: 1.0, // Records 100% of sessions with errors (Rolling buffer saved.)
 });
 
-createRoot(document.getElementById('root')).render(
+// The '!' after root tells TS to ignore the possibility of null as we should have a root element in our HTML. Not totally safe as we haven't checked but most common way of handling TS error here.
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <Sentry.ErrorBoundary fallback={<App />}> {/* In case of error gets fresh instance of App */}
       <App />
