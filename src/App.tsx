@@ -174,6 +174,13 @@ export default function App() {
           Guess the word in under 8 attempts to take home a kitty.
           After that you get a pet spider instead.
         </p>
+        <details>
+          <summary>How to Play</summary>
+          <p>
+            Guess the word in under 8 attempts to take home a kitty.
+            After that you get a pet spider instead.
+          </p>
+        </details>
       </header>
       <section
         className={clsx({
