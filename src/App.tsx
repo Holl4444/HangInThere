@@ -102,7 +102,7 @@ export default function App() {
 
   function renderMsg() {
     const lostCat = catArray.find((cat) => cat.lost);
-    const farewellMsg = lostCat && getFarewellText(lostCat);
+    const farewellMsg = lostCat && getFarewellText(lostCat.name);
 
     if (!isGameOver) {
       if (isInputWrong) {
