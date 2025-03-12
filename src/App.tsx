@@ -22,9 +22,6 @@ export type HandleLetterClick = (
 ) => void;
 
 export default function App() {
-    const throwError = () => {
-      throw new Error('Test Error');
-    };
   const [catArray, setCatArray] = useState<CatProps[]>(Cats);
   const [currentWord, setCurrentWord] = useState(() =>
     getRandomWord().toUpperCase()
