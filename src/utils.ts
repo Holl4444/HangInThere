@@ -18,7 +18,7 @@ export async function getRandomApiWord(): Promise<
     }
     const wordArray = await response.json();
     const word = wordArray[0];
-    console.log(word);
+    // console.log(word);
     return word;
   } catch (err) {
     console.error(`Error: `, err);
