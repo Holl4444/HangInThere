@@ -1,4 +1,4 @@
-# Hang In There
+# $${\color{orange}Hang}$$ $${\color{orange}In}$$ $${\color{orange}There}$$
 
 ![image](https://github.com/user-attachments/assets/aaa0c2d9-a5c7-466c-bf8b-7616f6d76c45)
 
@@ -37,6 +37,8 @@ Win\
 
 ## Requirements
 
+The app fetches words from an API so is best when connected to the internet but it does have a fallback wordlist for offline use.
+
 - Node,js
 - Npm
 - A modern browser (I'm using Chrome)
@@ -55,16 +57,20 @@ When ready to build for production:
 ```
 npm run build
 ```
-
+N.B
+The app uses React Strict Mode so effects run twice in development.
 
 ## The Process
 I tried to keep the file structure simple with this project to grow my understanding of the React/Vite set up.\
 I really struggled to find a free API with sufficient parameters like flexible length, british english spelling and reading level. The API results are currently more suited to a young hearted adult player rather than the younger age range I had initially envisioned.\
-Revisiting the project ocassionally after learning a new skill - for example I switched from JS to TS and added Sentry for practice!
+Revisiting the project ocassionally after learning a new skill - for example I switched from JS to TS and added Sentry for practice!\
+I've updated to include a more responsive design for mobile devices.
 
 ## Built With
 
-JS - JSX - HTML - CSS - REACT - VITE
+REACT - VITE - TS - TSX - HTML - CSS
+
+API: random-word-api.herokuapp.com
 
 ## Key Skills Employed
 
@@ -83,3 +89,6 @@ JS - JSX - HTML - CSS - REACT - VITE
 - Improved styling for different devices. 
 - To organise the folder structure.
 
+  ## Author
+  @Holl4444\
+  Based on Scrimba's final Capstone project in the Learn React Course. 
