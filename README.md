@@ -2,7 +2,7 @@
 
 ![image](https://github.com/user-attachments/assets/aaa0c2d9-a5c7-466c-bf8b-7616f6d76c45)
 
-## A Hangman Game - (eventually) with cats.
+## A Hangman Game - with cats.
 
 [Overview](#overview)\
 [Screenshots](#screenshots)\
