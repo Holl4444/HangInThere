@@ -59,7 +59,8 @@ npm run build
 
 ## The Process
 I tried to keep the file structure simple with this project to grow my understanding of the React/Vite set up.\
-I really struggled to find a free API with sufficient parameters like flexible length, british english spelling and reading level. The API results are currently more suited to a young hearted adult player rather than the younger age range I had initially envisioned.
+I really struggled to find a free API with sufficient parameters like flexible length, british english spelling and reading level. The API results are currently more suited to a young hearted adult player rather than the younger age range I had initially envisioned.\
+Revisiting the project ocassionally after learning a new skill - for example I switched from JS to TS and added Sentry for practice!
 
 ## Built With
 
