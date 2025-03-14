@@ -26,10 +26,11 @@ export type HandleLetterClick = (
 
 export default function App() {
   const [catArray, setCatArray] = useState<CatProps[]>(Cats);
-  //Await randomApiWord. If return null then use getRandomWord
+  // Initialise state using a word from our hardcoded list for render.
   const [currentWord, setCurrentWord] = useState(() => getRandomWord().toUpperCase());
   const [chosenLetters, setChosenLetters] = useState<Letter[]>([]);
 
+  //Now that the component is mounted try for a word from the API
   useEffect(() => {
     async function loadInitialWord() {
       const word = await fetchWord();
@@ -41,10 +42,11 @@ export default function App() {
   const wrongGuessCount = chosenLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
+  
   const isWin = currentWord
     .split('')
     .every((letter: Letter) => chosenLetters.includes(letter));
-  const isLoss = wrongGuessCount > Cats.length - 2;
+  const isLoss = wrongGuessCount > Cats.length - 2; // As the spider is there too
   const isGameOver = isWin || isLoss;
 
   const wordElement = currentWord.split('').map((char: Letter, index: number) => {
