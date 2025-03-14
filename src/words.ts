@@ -1,6 +1,18 @@
 const MIN_WORD_LENGTH = 5;
 const MAX_WORD_LENGTH = 9;
 
+export async function fetchWord(): Promise<string> {
+  try {
+    const apiWord = await getRandomApiWord();
+    if (apiWord) {
+      return apiWord.toUpperCase();
+    }
+  } catch (err) {
+    console.error('Error loading API word:', err);
+  }
+  return getRandomWord().toUpperCase();
+}
+
 export async function getRandomApiWord(): Promise<string | null> {
   const wordLength = Math.floor(
     Math.random() * (MAX_WORD_LENGTH - MIN_WORD_LENGTH + 1) +

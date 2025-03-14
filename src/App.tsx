@@ -3,7 +3,7 @@ import { Cats, CatProps } from './Cats';
 import Cat from './Cat';
 import Keyboard from './Keyboard';
 import { clsx } from 'clsx';
-import { getRandomWord, getRandomApiWord } from './words';
+import { fetchWord, getRandomWord } from './words';
 import { getFarewellText } from './utils';
 import Confetti from 'react-confetti';
 
@@ -31,19 +31,11 @@ export default function App() {
   const [chosenLetters, setChosenLetters] = useState<Letter[]>([]);
 
   useEffect(() => {
-    async function loadApiWord() {
-      try {
-        const apiWord = await getRandomApiWord();
-        if (apiWord) {
-          setCurrentWord(apiWord.toUpperCase());
-        }
-      } catch (err) {
-        console.error('Error loading API word:', err);
-        // Current word is already set to local word as fallback
-      }
+    async function loadInitialWord() {
+      const word = await fetchWord();
+      setCurrentWord(word);
     }
-   
-    loadApiWord();
+      loadInitialWord();
   }, []);
 
   const wrongGuessCount = chosenLetters.filter(
@@ -117,19 +109,8 @@ export default function App() {
     setCatArray(Cats);
     setChosenLetters([]);
     // Try to get a new word from API first
-    try {
-      const apiWord = await getRandomApiWord();
-      if (apiWord) {
-        setCurrentWord(apiWord.toUpperCase());
-      } else {
-        // Fall back to local word if API fails or returns null
-        setCurrentWord(getRandomWord().toUpperCase());
-      }
-    } catch (err) {
-      console.error('Error loading API word for new game:', err);
-      // Use local word on error
-      setCurrentWord(getRandomWord().toUpperCase());
-    }
+    const word = await fetchWord();
+    setCurrentWord(word);
   }
 
   function renderMsg() {
