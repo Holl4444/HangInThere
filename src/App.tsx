@@ -3,7 +3,8 @@ import { Cats, CatProps } from './Cats';
 import Cat from './Cat';
 import Keyboard from './Keyboard';
 import { clsx } from 'clsx';
-import { getFarewellText, getRandomWord, getRandomApiWord } from './utils';
+import { getRandomWord, getRandomApiWord } from './words';
+import { getFarewellText } from './utils';
 import Confetti from 'react-confetti';
 
 /*TODO
