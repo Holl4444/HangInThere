@@ -118,6 +118,12 @@ header > details {
   border-radius: 30%;
   box-shadow: 0px -2px 11px 0px #4e434e;
   font-size: min(0);
+  position: relative;
+}
+
+.cats > button:not(lose):hover img {
+  filter: brightness(50%);
+  text-shadow: 1px 1px 2px #000;
 }
 
 /* Use instead if want backgrounds to show */
@@ -128,6 +134,32 @@ header > details {
 /* use display: none for flexed layout */
 .cats > button.lose {
   visibility: hidden;
+    filter: brightness(150%)
+}
+
+.cat-name {
+  position: absolute;
+  left: 50%;
+  top: 50%;  
+  transform: translate(-50%, -50%);  /* Center both horizontally and vertically */
+  white-space: nowrap;
+  font-size: 0.75em;
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-color: #312f2f80; 
+  padding: 0.3em 0.6em;
+  border-radius: 3px;
+  width: auto;  /* Let it grow with content */
+  min-width: 100%; 
+  max-width: 220%;  /* Allow more room for long names */
+  text-align: center;
+  overflow: visible;
+  z-index: 10;
+}
+
+button:not(.lose):hover .cat-name {
+  opacity: 1;
 }
 
 img {
