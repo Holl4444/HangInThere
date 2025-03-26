@@ -27,7 +27,7 @@ export default function App() {
   );
   const [chosenLetters, setChosenLetters] = useState<Letter[]>([]);
 
-  //Now that the component is mounted try for a word from the API
+
   useEffect(() => {
     // useEffect handles side-effects (outside normal rendering flow)
     async function loadInitialWord() {

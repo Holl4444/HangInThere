@@ -1,3 +1,16 @@
+import { WordObject } from './wordsDatamuse';
+
+const THEMES = [
+  'cat',
+  'kitten',
+  'feline',
+  'mog',
+  'moggy',
+  'spider',
+  'web',
+  'arachnid',
+];
+
 export function getFarewellText(catName: string) {
   const options = [
     `Farewell, ${catName}`,
@@ -17,3 +30,46 @@ export function getFarewellText(catName: string) {
   const randomIndex = Math.floor(Math.random() * options.length);
   return options[randomIndex];
 }
+
+export function getIndex(arrayLength: number): number {
+  return Math.floor(Math.random() * arrayLength);
+}
+
+export function getTheme(): string {
+  return THEMES[getIndex(THEMES.length)];
+}
+
+export function handleErrorsDatamuse(response: Response, data: WordObject[]): boolean {
+  if (response.status !== 200) {
+    console.error(`Error ${response.status}: ${response.statusText}`);
+    return false;
+  }
+
+  if (!data || data.length === 0) {
+    console.error('No words received from API');
+    return false;
+  }
+
+  if (
+    !Array.isArray(data) ||
+    !data.every(
+      (item) =>
+        typeof item === 'object' && 'word' in item && 'score' in item
+    )
+  ) {
+    console.error('Malformed data received');
+    return false;
+  }
+
+  return true;
+}
+
+// Possible later use
+// import { MIN_WORD_LENGTH, MAX_WORD_LENGTH } from "./words";
+
+// export function getRandomWordLength(): number {
+//   return Math.floor(
+//     Math.random() * (MAX_WORD_LENGTH - MIN_WORD_LENGTH + 1) +
+//       MIN_WORD_LENGTH
+//   );
+// }
