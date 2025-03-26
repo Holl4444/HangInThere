@@ -10,7 +10,8 @@
 [The Process](#the-process)\
 [Built With](#built-with)\
 [Key Skills](#key-skills-employed)\
-[Continued Development](#continued-development)
+[Continued Development](#continued-development)\
+[Classic](#classic)
 
 
 ## Overview
@@ -103,3 +104,7 @@ To Do:
   ## Author
   @Holl4444\
   Based on Scrimba's final Capstone project in the Learn React Course. 
+
+  ### Classic
+
+  ![classic](image.png)
