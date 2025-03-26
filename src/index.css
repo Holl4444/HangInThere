@@ -2,6 +2,13 @@
   box-sizing: border-box;
 }
 
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -148,7 +155,7 @@ header > details {
   opacity: 0;
   transition: opacity 0.3s ease;
   background-color: #312f2f80; 
-  padding: 0.3em 0.6em;
+  padding: 0.2em 0.6em;
   border-radius: 3px;
   width: auto;  /* Let it grow with content */
   min-width: 100%; 
@@ -160,6 +167,15 @@ header > details {
 
 button:not(.lose):hover .cat-name {
   opacity: 1;
+}
+
+/* Remove dimming for Vince */
+.cats > button[name="Vince the Impailer"]:hover img {
+  filter: none;  /* Override the dimming */
+}
+
+.cats > button[name="Vince the Impailer"]:hover {
+  animation: wiggle 0.3s ease-in-out 2;
 }
 
 img {
