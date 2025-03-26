@@ -14,13 +14,16 @@ export async function fetchWord(): Promise<string> {
 }
 
 export async function getRandomApiWord(): Promise<string | null> {
+  //Can't set word length range with this API
   const wordLength = Math.floor(
     Math.random() * (MAX_WORD_LENGTH - MIN_WORD_LENGTH + 1) +
       MIN_WORD_LENGTH
   );
+  // temporary proxy while waiting for wordpik api key
+  const proxyUrl = 'https://api.allorigins.win/raw?url='; // intermediary party trusted by both.
   const url = `https://random-word-api.herokuapp.com/word?length=${wordLength}`;
   try {
-    const response = await fetch(url);
+    const response = await fetch(`${proxyUrl}${url}`);
     if (!response.ok) {
       throw new Error(`Error contacting API: ${response.status}`);
     }

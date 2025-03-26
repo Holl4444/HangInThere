@@ -2,65 +2,66 @@ import { useState, useEffect } from 'react';
 import { Cats, CatProps } from './Cats';
 import Cat from './Cat';
 import Keyboard from './Keyboard';
-import { clsx } from 'clsx';
+import { clsx } from 'clsx'; //Helps with conditional CSS classes
 import { fetchWord, getRandomWord } from './words';
 import { getFarewellText } from './utils';
 import Confetti from 'react-confetti';
 
-/*TODO
-Word API
-Transition cat disappearance
-Enlarge and centre spider img on isLoss
-Add sounds
-*/
+type Letter = string; // Just makes code more readable
 
-type Letter = string;
 interface RemainingCat {
   cat: CatProps;
   index: number;
 }
 
+// create (and export) a type for handling button click events
 export type HandleLetterClick = (
   e: React.MouseEvent<HTMLButtonElement>
-) => void;
+) => void; //Doesn't return anything
 
 export default function App() {
   const [catArray, setCatArray] = useState<CatProps[]>(Cats);
   // Initialise state using a word from our hardcoded list for render.
-  const [currentWord, setCurrentWord] = useState(() => getRandomWord().toUpperCase());
+  const [currentWord, setCurrentWord] = useState(() =>
+    getRandomWord().toUpperCase()
+  );
   const [chosenLetters, setChosenLetters] = useState<Letter[]>([]);
 
   //Now that the component is mounted try for a word from the API
   useEffect(() => {
+    // useEffect handles side-effects (outside normal rendering flow)
     async function loadInitialWord() {
       const word = await fetchWord();
       setCurrentWord(word);
     }
-      loadInitialWord();
-  }, []);
+    loadInitialWord(); // dependecy array
+  }, []); // Just on first render (new game handled in resetGame())
 
   const wrongGuessCount = chosenLetters.filter(
     (letter) => !currentWord.includes(letter)
   ).length;
-  
+
   const isWin = currentWord
     .split('')
     .every((letter: Letter) => chosenLetters.includes(letter));
   const isLoss = wrongGuessCount > Cats.length - 2; // As the spider is there too
-  const isGameOver = isWin || isLoss;
+  const isGameOver = isWin || isLoss; // Keeps it clean instead of repeating isWin || isLoss. One prop to pass
 
-  const wordElement = currentWord.split('').map((char: Letter, index: number) => {
-    const revealLetter =
-      chosenLetters.includes(char.toUpperCase()) || isLoss;
-    const letterClassName = clsx({
-      'missed-letter': isLoss && !chosenLetters.includes(char),
+  // reveal a letter or show blank
+  const wordElement = currentWord
+    .split('')
+    .map((char: Letter, index: number) => {
+      const revealLetter =
+        chosenLetters.includes(char.toUpperCase()) || isLoss;
+      const letterClassName = clsx({ //styling all
+        'missed-letter': isLoss && !chosenLetters.includes(char), //on game loss any unguessed letters become red in word elemenet
+      });
+      return (
+        <span key={index} className={letterClassName}>
+          {revealLetter ? char.toUpperCase() : ''}
+        </span>
+      );
     });
-    return (
-      <span key={index} className={letterClassName}>
-        {revealLetter ? char.toUpperCase() : ''}
-      </span>
-    );
-  });
 
   const lastChosenLetter = chosenLetters[chosenLetters.length - 1];
   const isInputWrong =
@@ -79,8 +80,8 @@ export default function App() {
       const remainingCats = catArray
         .map((cat, index) =>
           cat.className &&
-            !cat.className.includes('lose') &&
-            !cat.className.includes('spider')
+          !cat.className.includes('lose') &&
+          !cat.className.includes('spider')
             ? { cat, index }
             : null
         )
@@ -96,10 +97,10 @@ export default function App() {
           prev.map((cat, index) =>
             index === randomCatIdx
               ? {
-                ...cat,
-                className: `${cat.className} lose`,
-                lost: true,
-              }
+                  ...cat,
+                  className: `${cat.className} lose`,
+                  lost: true,
+                }
               : { ...cat, lost: false }
           )
         );
