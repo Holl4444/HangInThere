@@ -21,15 +21,15 @@ export type HandleLetterClick = (
 
 export default function App() {
   const [catArray, setCatArray] = useState<CatProps[]>(Cats);
-  // Initialise state using a word from our hardcoded list for render.
+  // Show local word immediately for better UX
   const [currentWord, setCurrentWord] = useState(() =>
     getRandomWord().toUpperCase()
   );
   const [chosenLetters, setChosenLetters] = useState<Letter[]>([]);
-
-
+  
+  // useEffect handles side-effects (outside normal rendering flow)
   useEffect(() => {
-    // useEffect handles side-effects (outside normal rendering flow)
+    // Try to get themed word from API, but don't interrupt gameplay if it fails
     async function loadInitialWord() {
       const word = await fetchWord();
       setCurrentWord(word);
@@ -53,7 +53,8 @@ export default function App() {
     .map((char: Letter, index: number) => {
       const revealLetter =
         chosenLetters.includes(char.toUpperCase()) || isLoss;
-      const letterClassName = clsx({ //styling all
+      const letterClassName = clsx({
+        //styling all
         'missed-letter': isLoss && !chosenLetters.includes(char), //on game loss any unguessed letters become red in word elemenet
       });
       return (
