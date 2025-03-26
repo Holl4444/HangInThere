@@ -1,5 +1,6 @@
 import { CatProps } from './Cats';
-;
+import styles from './Cat.module.css';
+
 export default function Cat({
   backgroundColor,
   color,
@@ -7,22 +8,23 @@ export default function Cat({
   name,
   srcName,
 }: CatProps) {
-  const styles = {
+  const inlineStyles = {
     backgroundColor,
     color: color,
   };
 
-  return (
+   return (
     <button
       className={className}
       name={name}
-      style={styles}
+      style={inlineStyles}
     >
       <img
         src={`${srcName}.png`}
         alt={`A cat named ${name}.`}
         className={className}
       />
+       <p className='cat-name'>{name}</p>
     </button>
   );
 }
