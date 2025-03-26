@@ -126,6 +126,7 @@ header > details {
   box-shadow: 0px -2px 11px 0px #4e434e;
   font-size: min(0);
   position: relative;
+  transition: opacity 0.6s ease;
 }
 
 .cats > button:not(lose):hover img {
@@ -140,8 +141,9 @@ header > details {
 
 /* use display: none for flexed layout */
 .cats > button.lose {
-  visibility: hidden;
-    filter: brightness(150%)
+  /* visibility: hidden; */
+  opacity: 0;
+  
 }
 
 .cat-name {
