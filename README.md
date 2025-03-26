@@ -14,7 +14,7 @@
 
 
 ## Overview
-The aim is to solve the word puzzle and make your choice from the remaining cats, before the only pet remaining is a spider (8 moves).
+The aim is to solve the word puzzle (themed around cats and spiders) and make your choice from the remaining cats, before the only pet remaining is a spider (8 moves).
 With unlimited resources I'd like to have the cats hanging as in the notorious posters and falling when you guess incorrectly - in case anyone was wondering about the name!
 Based on the final Capstone project in Scrimba's Learn React Course.
 
@@ -71,9 +71,11 @@ The app uses React Strict Mode so effects run twice in development.
 
 ## Built With
 
-REACT - VITE - TS - TSX - HTML - CSS
+REACT - VITE - TS - TSX - HTML - CSS - SENTRY
 
-API: https://random-word-api.herokuapp.com
+**APIs**
+~~https://random-word-api.herokuapp.com~~ (sadly retired March 2025 😢)
+**Current API:** [Datamuse API](https://api.datamuse.com) (now serving up cat and spider themed words! 🐱🕷️)
 
 ## Key Skills Employed
 
@@ -84,13 +86,19 @@ API: https://random-word-api.herokuapp.com
 
 ## Continued Development
 
-- Linking to an API to pull word lists in. ✔️
-- Add new word option while mid game.
-- Counter to track turns left before spider.
-- Making the app more engaging: adding a transition to make losing a cat more obvious, enlarging and centering the spider on loss and adding sounds.
-- If the app gets any larger, to try createContext.
-- Improved styling for different devices. 
-- To organise the folder structure.
+Completed:
+✔️ Linking to an API to pull word lists in. 
+✔️ Implement responsive design.
+✔️ Convert to TypeScript.
+✔️ Add error tracking.
+
+To Do:
+- Add new word option during gameplay.
+- Add turn counter for spider warning.
+- Enhance animations and transitions.
+- Add sound effects.
+- Implement Context API if complexity increases.
+- Optimize folder structure.
 
   ## Author
   @Holl4444\
