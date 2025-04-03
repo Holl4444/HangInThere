@@ -4,6 +4,7 @@ import Cat from './Cat';
 import Keyboard from './Keyboard';
 import { clsx } from 'clsx'; //Helps with conditional CSS classes
 import { fetchWord, getRandomWord } from './words';
+import wordnik from './Wordnik';
 import { getFarewellText } from './utils';
 import Confetti from 'react-confetti';
 
@@ -31,12 +32,17 @@ export default function App() {
   useEffect(() => {
     // Try to get themed word from API, but don't interrupt gameplay if it fails
     async function loadInitialWord() {
-      const word = await fetchWord();
-      if (word) {
-        setCurrentWord(word); // Only update if receive valid API word.
+      const wordnikWord = await wordnik();
+      if (wordnikWord) {
+        setCurrentWord(wordnikWord);
+      } else {
+        const word = await fetchWord();
+        if (word) {
+          setCurrentWord(word); // Only update if receive valid API word.
+        }
       }
     }
-    loadInitialWord(); // dependecy array
+    loadInitialWord(); // dependency array
   }, []); // Just on first render (new game handled in resetGame())
 
   const wrongGuessCount = chosenLetters.filter(
@@ -115,12 +121,16 @@ export default function App() {
     setCatArray(Cats);
     setChosenLetters([]);
     setCurrentWord(getRandomWord().toUpperCase());
-    // Try to get a new word from API first
-    const word = await fetchWord();
+
+    const wordnikWord = await wordnik();
+    if (wordnikWord) {
+      setCurrentWord(wordnikWord);
+    } else {
+      const word = await fetchWord();
       if (word) {
-        // Only update if we get valid API word
-        setCurrentWord(word);
+        setCurrentWord(word); // Only update if receive valid API word.
       }
+    }
   }
 
   function renderMsg() {
