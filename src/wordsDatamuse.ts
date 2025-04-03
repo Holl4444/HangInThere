@@ -15,7 +15,10 @@ export function validateWords(words: WordObject[]): string[] | null {
     if (
       /^[a-z]+$/.test(word) &&
       !validWords.includes(word) &&
-      obj.score > SCORE_THRESHOLD
+      obj.score > SCORE_THRESHOLD &&
+      word.length >= MIN_WORD_LENGTH &&
+      word.length <= MAX_WORD_LENGTH
+      
     ) {
       validWords.push(word);
     }
@@ -29,13 +32,6 @@ export function selectFinalWord(validWords: string[]): string | null {
 
   const randomIndex = getIndex(validWords.length);
   const chosenWord = validWords[randomIndex];
-
-  if (
-    chosenWord.length > MAX_WORD_LENGTH ||
-    chosenWord.length < MIN_WORD_LENGTH
-  ) {
-    return null;
-  }
 
   return chosenWord;
 }

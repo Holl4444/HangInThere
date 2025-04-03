@@ -12,7 +12,7 @@ export async function fetchWord(): Promise<string> {
   } catch (err) {
     console.error('Error loading API word, falling back to local word list:', err);
   }
-  return getRandomWord().toUpperCase()
+  return ""; // If no API word fallback to pre API called word.
 }
 
 export async function getRandomApiWord(): Promise<string | null> {

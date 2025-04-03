@@ -32,7 +32,9 @@ export default function App() {
     // Try to get themed word from API, but don't interrupt gameplay if it fails
     async function loadInitialWord() {
       const word = await fetchWord();
-      setCurrentWord(word);
+      if (word) {
+        setCurrentWord(word); // Only update if receive valid API word.
+      }
     }
     loadInitialWord(); // dependecy array
   }, []); // Just on first render (new game handled in resetGame())
@@ -210,7 +212,7 @@ export default function App() {
           {currentWord
             .split('')
             .map((letter: Letter) =>
-              chosenLetters.includes(letter) ? letter + '.' : 'blank.'
+              chosenLetters.includes(letter) ? letter + '.' : 'blank.' // The dot helps screen readers read letters (or 'blank.'s) aloud separately
             )
             .join('')}
         </p>
