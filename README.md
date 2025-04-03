@@ -19,6 +19,8 @@ The aim is to solve the word puzzle (themed around cats and spiders) and make yo
 With unlimited resources I'd like to have the cats hanging as in the notorious posters and falling when you guess incorrectly - in case anyone was wondering about the name!
 Based on the final Capstone project in Scrimba's Learn React Course.
 
+![Currentoverview](image-1.png)
+
 ## Screenshots
 
 Start Screen\
