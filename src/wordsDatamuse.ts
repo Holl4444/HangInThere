@@ -8,7 +8,7 @@ export interface WordObject {
 
 export function validateWords(words: WordObject[]): string[] | null {
   const validWords: string[] = [];
-  const SCORE_THRESHOLD = 30000;
+  const SCORE_THRESHOLD = 80000;
 
   for (const obj of words) {
     const word = obj.word.toLowerCase();
