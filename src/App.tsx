@@ -114,9 +114,13 @@ export default function App() {
   async function resetGame() {
     setCatArray(Cats);
     setChosenLetters([]);
+    setCurrentWord(getRandomWord().toUpperCase());
     // Try to get a new word from API first
     const word = await fetchWord();
-    setCurrentWord(word);
+      if (word) {
+        // Only update if we get valid API word
+        setCurrentWord(word);
+      }
   }
 
   function renderMsg() {

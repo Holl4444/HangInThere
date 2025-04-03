@@ -10,9 +10,12 @@ export async function fetchWord(): Promise<string> {
       return apiWord.toUpperCase();
     }
   } catch (err) {
-    console.error('Error loading API word, falling back to local word list:', err);
+    console.error(
+      'Error loading API word, falling back to local word list:',
+      err
+    );
   }
-  return ""; // If no API word fallback to pre API called word.
+  return ''; // If no API word fallback to pre API called word.
 }
 
 export async function getRandomApiWord(): Promise<string | null> {
@@ -26,11 +29,10 @@ export async function getRandomApiWord(): Promise<string | null> {
     if (!handleErrorsDatamuse(response, data)) {
       return null;
     }
-    
+
     const validWords = validateWords(data);
     if (!validWords || validWords.length === 0) return null;
     return selectFinalWord(validWords);
-
   } catch (err) {
     console.error(`API Error: `, err);
     return null;
