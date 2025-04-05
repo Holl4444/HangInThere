@@ -472,45 +472,52 @@ button.keys:disabled {
     margin: 0;
   }
   header > h1 {
-    font-size: 2.3rem;
+    font-size: 2em;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0.1rem;
   }
 
   header > p {
     display: none;
+    margin-bottom: 0.1rem;
   }
   header > details {
     display: block;
     cursor: pointer;
-    margin: 0.2rem 0;  
+    margin: 0.4rem 0;  
   }
   header > details > summary {
   font-weight: bold;
   color: #ffc9b9;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
   list-style: none;
   }
    header > details > summary::after {
     content: " ▼";
     font-size: 0.8em;
-  }
+   }
     header > details[open] > summary::after {
     content: " ▲";
   }
     header > details > p {
-    margin: 0.3rem;
-    font-size: 0.9rem;
+    margin: 0.3em;
+    font-size: 0.9em;
   }
 
   .word-div {
     column-gap: 0.1rem;
+    margin: 0.5em;
   }
   .msg-container {
-    height: 3rem;
-    font-size: 0.8rem;
-    margin-block: 0.2rem;
+    height: 2.7rem;
+    font-size: 0.85em;
+    margin-block: 0.1em;
+    padding: 0.1rem;
   }
-  h2 {
-    font-size: 1rem;
+
+  .msg-container > h2 {
+    font-size: 1em;
   }
   .cats {
     gap: 0.5rem;
