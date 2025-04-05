@@ -4,7 +4,7 @@ import Cat from './Cat';
 import Keyboard from './Keyboard';
 import { clsx } from 'clsx'; //Helps with conditional CSS classes
 import { fetchWord, getRandomWord } from './words';
-import wordnik from './Wordnik';
+import wordnik from './wordnik';
 import { getFarewellText } from './utils';
 import Confetti from 'react-confetti';
 
