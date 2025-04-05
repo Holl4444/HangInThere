@@ -82,6 +82,11 @@ header > p {
 header > details {
   display: none;
 }
+
+details > summary {
+  list-style: none;
+}
+
 .msg-container {
   width: 100%;
   max-width: 22rem;
