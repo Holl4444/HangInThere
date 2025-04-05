@@ -469,11 +469,10 @@ button.keys:disabled {
     list-style: none;
   }
   header > details > summary::after {
-    content: ' ▼';
     font-size: 0.8em;
   }
   header > details[open] > summary::after {
-    content: ' ▲';
+    font-size: 0.8em;
   }
   header > details > p {
     margin: 0.3rem;
@@ -541,11 +540,10 @@ button.keys:disabled {
     list-style: none;
   }
   header > details > summary::after {
-    content: ' ▼';
     font-size: 0.8em;
   }
   header > details[open] > summary::after {
-    content: ' ▲';
+    font-size: 0.8em;
   }
   header > details > p {
     margin: 0.3em;
