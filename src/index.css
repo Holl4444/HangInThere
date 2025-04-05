@@ -83,7 +83,7 @@ header > details {
   display: none;
 }
 
-details > summary {
+header > details > summary {
   list-style: none;
 }
 
@@ -382,13 +382,24 @@ button.keys:disabled {
     margin-bottom: 0.5rem;
     list-style: none;
   }
+
+  header > details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  header > details > summary::marker {
+    display: none;
+  }
+
   header > details > summary::after {
     content: ' ▼';
     font-size: 0.8em;
   }
+
   header > details[open] > summary::after {
     content: ' ▲';
   }
+
   header > details > p {
     margin: 0.7rem;
     font-size: 0.9rem;
@@ -457,30 +468,15 @@ button.keys:disabled {
   header > h1 {
     font-size: 2.6rem;
   }
-  header > p {
-    display: none;
-  }
 
   header > details {
-    display: block;
-    cursor: pointer;
     margin: 0.2rem 0;
   }
 
   header > details > summary {
-    font-weight: bold;
-    color: #ffc9b9;
     margin-bottom: 0.3rem;
-    list-style: none;
   }
-  header > details > summary::after {
-    content: ' ▼';
-    font-size: 0.8em;
-  }
-  header > details[open] > summary::after {
-    content: ' ▲';
-    font-size: 0.8em;
-  }
+
   header > details > p {
     margin: 0.3rem;
     font-size: 0.9rem;
@@ -536,24 +532,13 @@ button.keys:disabled {
     margin-bottom: 0.1rem;
   }
   header > details {
-    display: block;
-    cursor: pointer;
     margin: 0.4rem 0;
   }
+
   header > details > summary {
-    font-weight: bold;
-    color: #ffc9b9;
     margin-bottom: 0.4rem;
-    list-style: none;
   }
-  header > details > summary::after {
-    content: ' ▼';
-    font-size: 0.8em;
-  }
-  header > details[open] > summary::after {
-    content: ' ▲';
-    font-size: 0.8em;
-  }
+
   header > details > p {
     margin: 0.3em;
     font-size: 0.9em;
