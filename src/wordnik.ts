@@ -11,7 +11,7 @@ let wordnikCache: WordnikResponse[] = []; // Don't need state as this is a modul
 
 //MinCorpusCount controls how common the words are. Higher is more common.
 
-const wordnikUrl = `https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=${MIN_WORD_LENGTH}&maxLength=${MAX_WORD_LENGTH}&limit=10&minCorpusCount=1500&api_key=${
+const wordnikUrl = `https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=${MIN_WORD_LENGTH}&maxLength=${MAX_WORD_LENGTH}&limit=10&minCorpusCount=2000&api_key=${
   import.meta.env.VITE_WORDNIK_API_KEY
     }`;
 
