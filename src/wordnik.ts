@@ -11,7 +11,7 @@ let wordnikCache: WordnikResponse[] = []; // Don't need state as this is a modul
 
 //TODO: Check API responses and add more controls to wordnik random words!!!
 
-const wordnikUrl = `https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=${MIN_WORD_LENGTH}&maxLength=${MAX_WORD_LENGTH}&limit=10&api_key=${
+const wordnikUrl = `https://api.wordnik.com/v4/words.json/randomWords?hasDictionaryDef=true&minLength=${MIN_WORD_LENGTH}&maxLength=${MAX_WORD_LENGTH}&limit=5&minCorpusCount=1500&api_key=${
   import.meta.env.VITE_WORDNIK_API_KEY
     }`;
 
@@ -19,6 +19,7 @@ export default async function fetchWordnik(): Promise<string | null> {
     try {
         // Any stored words?
       if (wordnikCache.length > 0) {
+        console.log('we have a wordnik cache')
         const randomIndex = getIndex(wordnikCache.length);
         const wordnikWord = wordnikCache[randomIndex].word;
         wordnikCache = [
@@ -29,6 +30,7 @@ export default async function fetchWordnik(): Promise<string | null> {
         }
         
       //fetch from api
+      console.log('Attempting Wordnik fetch');
       const response = await fetch(wordnikUrl);
       const wordnikArray = await response.json();
         if (!wordnikArray || wordnikArray.length === 0) return null;
