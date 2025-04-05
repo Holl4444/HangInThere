@@ -507,7 +507,7 @@ button.keys:disabled {
 
   .word-div {
     column-gap: 0.1rem;
-    margin: 0.5em;
+    margin: 0.3em;
   }
   .msg-container {
     height: 2.7rem;
@@ -520,12 +520,12 @@ button.keys:disabled {
     font-size: 1em;
   }
   .cats {
-    gap: 0.5rem;
+    gap: 0.4rem;
     margin-bottom: 0.5rem;
   }
   .cats > button {
-    width: 3.3rem;
-    height: 3.3rem;
+    width: 3.2rem;
+    height: 3.2rem;
   }
 }
 
