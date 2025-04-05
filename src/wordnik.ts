@@ -19,7 +19,6 @@ export default async function fetchWordnik(): Promise<string | null> {
     try {
         // Any stored words?
       if (wordnikCache.length > 0) {
-        console.log('we have a wordnik cache')
         const randomIndex = getIndex(wordnikCache.length);
         const wordnikWord = wordnikCache[randomIndex].word;
         wordnikCache = [
@@ -37,7 +36,7 @@ export default async function fetchWordnik(): Promise<string | null> {
       const regex = /^[^-\s]+$/; // No hyphens or spaces
         const cleanWordnikArray: WordnikResponse[] = wordnikArray.filter(word => regex.test(word.word));
         if (cleanWordnikArray.length > 1) {
-            wordnikCache = cleanWordnikArray.slice(1); // stash remaining words
+          wordnikCache = cleanWordnikArray.slice(1); // stash remaining words
         }
         return cleanWordnikArray[0].word.toUpperCase(); // return the first one
 

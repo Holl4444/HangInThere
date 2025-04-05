@@ -23,6 +23,7 @@ export async function getRandomApiWord(): Promise<string | null> {
   const url = `https://api.datamuse.com/words?ml=${theme}&max=100`;
 
   try {
+    console.log(`Attempting Datamuse fetch`);
     const response = await fetch(url);
     const data = await response.json();
 
@@ -34,7 +35,7 @@ export async function getRandomApiWord(): Promise<string | null> {
     if (!validWords || validWords.length === 0) return null;
     return selectFinalWord(validWords);
   } catch (err) {
-    console.error(`API Error: `, err);
+    console.error(`Datamuse API Error: `, err);
     return null;
   }
 }
