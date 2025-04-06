@@ -45,7 +45,7 @@ When ready to build for production:
 npm run build
 ```
 N.B
-The app uses React Strict Mode so effects run twice in development.
+Note that in development, React Strict Mode causes certain lifecycle methods and hooks (like useEffect) to run twice to help identify side effects.
 
 ## The Process
 - I tried to keep the file structure simple with this project to grow my understanding of the React/Vite set up.
