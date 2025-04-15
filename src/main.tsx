@@ -6,10 +6,12 @@ import * as Sentry from '@sentry/react';
 
 //Error / Exception tracking - Here at start of app to run before everything and catch earliest possible errors.
 Sentry.init({
-  dsn: 'https://e8ba4e88268083bc735f8da372cc5fba@o4508800319160320.ingest.de.sentry.io/4508801752694864',
+  dsn: import.meta.env.VITE_SENTRY_DSN,
   integrations: [
     Sentry.browserTracingIntegration(), // Tracks how fast the app loads and runs
-    Sentry.replayIntegration(), //Records user actions to replay in event of an error
+    Sentry.replayIntegration({
+      blockAllMedia: false, // Allow game visuals to be recorded but not user choices
+    }), //Records user actions to replay in event of an error
   ],
   // Tracing
   tracesSampleRate: 1.0, // How much Sentry watches (here everything - 100%)
