@@ -5,12 +5,12 @@
 ## A Hangman Game - with cats.🐈
 
 [Overview](#overview)\
-[Screenshots](#screenshots)\
 [Requirements](#requirements)\
 [The Process](#the-process)\
 [Built With](#built-with)\
 [Key Skills](#key-skills-employed)\
 [Continued Development](#continued-development)\
+[Screenshots](#screenshots)\
 [Classic](#classic)
 
 
@@ -21,22 +21,6 @@ Based on the final Capstone project in Scrimba's Learn React Course.
 
 ![Currentoverview](image-1.png)
 
-## Screenshots
-
-Start Screen\
-![startScreen](https://github.com/user-attachments/assets/0b22ac49-0a7a-4b89-9e8b-ed0363666e23)
-
-Farewell message and key styling on negative guess.\
-![farewell](https://github.com/user-attachments/assets/d7301775-bbfc-42fc-bb16-f69ce08a0613)
-
-Green successful guess buttons.\
-![successfulGuess](https://github.com/user-attachments/assets/09c6e08a-7b57-462c-a93f-d85454ba24d6)
-
-Loss\
-![lose](https://github.com/user-attachments/assets/fa55c7fc-ca7d-4527-9ca8-1354e14a2d35)
-
-Win\
-![win](https://github.com/user-attachments/assets/6b5445ff-7d1e-4c70-9f65-6c5431b0afe8)
 
 ## Requirements
 
@@ -61,7 +45,7 @@ When ready to build for production:
 npm run build
 ```
 N.B
-The app uses React Strict Mode so effects run twice in development.
+Note that in development, React Strict Mode causes certain lifecycle methods and hooks (like useEffect) to run twice to help identify side effects.
 
 ## The Process
 - I tried to keep the file structure simple with this project to grow my understanding of the React/Vite set up.
@@ -78,8 +62,8 @@ The app uses React Strict Mode so effects run twice in development.
 REACT - VITE - TS - TSX - HTML - CSS - SENTRY
 
 **APIs**
-~~https://random-word-api.herokuapp.com~~ (sadly retired March 2025 😢)
-**Current APIs:**[Wordnik API](https://developer.wordnik.com primary word source, \
+~~https://random-word-api.herokuapp.com~~ (sadly retired March 2025 😢)\
+**Current APIs:**[Wordnik API](https://developer.wordnik.com primary word source,\
 [Datamuse API](https://api.datamuse.com) (now serving up cat and spider themed words! 🐱🕷️)
 
 ## Key Skills Employed
@@ -104,6 +88,18 @@ To Do:
 - Add sound effects.
 - Implement Context API if complexity increases.
 - Optimize folder structure.
+
+## Screenshots
+
+Farewell message and key styling on negative guess.\
+![farewell](https://github.com/user-attachments/assets/d7301775-bbfc-42fc-bb16-f69ce08a0613)
+
+Green successful guess buttons.\
+![successfulGuess](https://github.com/user-attachments/assets/09c6e08a-7b57-462c-a93f-d85454ba24d6)
+
+Win\
+![win](https://github.com/user-attachments/assets/6b5445ff-7d1e-4c70-9f65-6c5431b0afe8)
+
 
   ## Author
   @Holl4444\
