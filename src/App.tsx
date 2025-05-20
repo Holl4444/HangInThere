@@ -143,6 +143,15 @@ export default function App() {
   }
 
   function renderMsg() {
+    if (currentWord === 'Loading') {
+      return (
+        <>
+          <h2>Loading</h2>
+          <p>Filling water bowls, keeping Vince at bay...</p>
+        </>
+      );
+    }
+
     const lostCat = catArray.find((cat) => cat.lost);
     const farewellMsg = lostCat && getFarewellText(lostCat.name);
 
@@ -174,14 +183,6 @@ export default function App() {
         </>
       );
     }
-    if (currentWord === 'Loading') {
-      return (
-        <>
-          <h2>Loading</h2>
-          <p>Filling water bowls, keeping Vance at bay...</p>
-        </>
-      );
-    }
   }
 
   return (
@@ -204,7 +205,8 @@ export default function App() {
       <section
         className={clsx({
           'msg-container': true,
-          hidden: !isGameOver && !isInputWrong,
+          hidden:
+            !isGameOver && !isInputWrong && currentWord !== 'Loading',
           fail: isLoss,
           win: isWin,
         })}
