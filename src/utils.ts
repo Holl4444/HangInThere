@@ -66,3 +66,16 @@ export function handleErrorsDatamuse(
 
   return true;
 }
+
+export function getLoadingText () {
+  const options = [
+    `Cleaning litterboxes...`,
+    `Topping up water bowls...`,
+    `Petting cats...`,
+    `Preparing spider bite remedy...`,
+    `Triple locking spider cage...`,
+    `Playing with cats...`
+  ]
+  const randomIndex = Math.floor(Math.random() * options.length);
+  return options[randomIndex];
+}

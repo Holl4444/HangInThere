@@ -5,7 +5,7 @@ import Keyboard from './Keyboard';
 import { clsx } from 'clsx'; //Helps with conditional CSS classes
 import getWord from './wordFlow';
 import { getRandomDbWord } from './wordsBackup';
-import { getFarewellText } from './utils';
+import { getFarewellText, getLoadingText } from './utils';
 import Confetti from 'react-confetti';
 
 type Letter = string; // Just makes code more readable
@@ -143,11 +143,12 @@ export default function App() {
   }
 
   function renderMsg() {
+    const loadingMsg = getLoadingText();
     if (currentWord === 'Loading') {
       return (
         <>
           <h2>Loading</h2>
-          <p>Filling water bowls, keeping Vince at bay...</p>
+          <p>{loadingMsg}</p>
         </>
       );
     }
