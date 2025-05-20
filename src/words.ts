@@ -9,13 +9,14 @@ export async function fetchWord(): Promise<string> {
     if (apiWord) {
       return apiWord.toUpperCase();
     }
+    return getRandomDbWord().toUpperCase(); // If no API word fallback to pre API called word.
   } catch (err) {
     console.error(
       'Error loading API word, falling back to local word list:',
       err
     );
   }
-  return getRandomDbWord(); // If no API word fallback to pre API called word.
+  return getRandomDbWord().toUpperCase();
 }
 
 export async function getRandomApiWord(): Promise<string | null> {

@@ -23,7 +23,7 @@ export type HandleLetterClick = (
 export default function App() {
   const [catArray, setCatArray] = useState<CatProps[]>(Cats);
   // Show local word immediately for better UX
-  const [currentWord, setCurrentWord] = useState('');
+  const [currentWord, setCurrentWord] = useState('Loading');
   const [chosenLetters, setChosenLetters] = useState<Letter[]>([]);
 
   // useEffect handles side-effects (outside normal rendering flow)
@@ -37,7 +37,8 @@ export default function App() {
         const word = await fetchWord();
         if (word) {
           setCurrentWord(word); // Only update if receive valid API word.
-        }       }
+        }
+      }
     }
     loadInitialWord(); // dependency array
   }, []); // Just on first render (new game handled in resetGame())
@@ -46,12 +47,11 @@ export default function App() {
     (letter) => !currentWord.includes(letter)
   ).length;
 
-  const isWin = currentWord.length > 3 && currentWord
-    .split('')
-    .every(
-      (letter: Letter) =>
-        chosenLetters.includes(letter) 
-    );
+  const isWin =
+    currentWord.length > 3 &&
+    currentWord
+      .split('')
+      .every((letter: Letter) => chosenLetters.includes(letter));
   const isLoss = wrongGuessCount > Cats.length - 2; // As the spider is there too
   const isGameOver = isWin || isLoss; // Keeps it clean instead of repeating isWin || isLoss. One prop to pass
 
@@ -120,7 +120,7 @@ export default function App() {
   async function resetGame() {
     setCatArray(Cats);
     setChosenLetters([]);
-    setCurrentWord('');
+    setCurrentWord('Loading');
 
     const wordnikWord = await wordnik();
     if (wordnikWord) {
@@ -162,6 +162,14 @@ export default function App() {
         <>
           <h2>Game over!</h2>
           <p>You lose! Enjoy your pet spider! 🕷️🕸️</p>
+        </>
+      );
+    }
+    if (currentWord === 'Loading') {
+      return (
+        <>
+          <h2>Loading</h2>
+          <p>Filling water bowls, keeping Vance at bay...</p>
         </>
       );
     }
