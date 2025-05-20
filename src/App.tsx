@@ -3,7 +3,7 @@ import { Cats, CatProps } from './Cats';
 import Cat from './Cat';
 import Keyboard from './Keyboard';
 import { clsx } from 'clsx'; //Helps with conditional CSS classes
-import { fetchWord, getRandomWord } from './words';
+import { fetchWord } from './words';
 import wordnik from './wordnik';
 import { getFarewellText } from './utils';
 import Confetti from 'react-confetti';
@@ -37,8 +37,7 @@ export default function App() {
         const word = await fetchWord();
         if (word) {
           setCurrentWord(word); // Only update if receive valid API word.
-        }
-      }
+        }       }
     }
     loadInitialWord(); // dependency array
   }, []); // Just on first render (new game handled in resetGame())

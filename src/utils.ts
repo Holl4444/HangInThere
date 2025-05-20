@@ -63,13 +63,3 @@ export function handleErrorsDatamuse(response: Response, data: WordObject[]): bo
 
   return true;
 }
-
-// Possible later use
-// import { MIN_WORD_LENGTH, MAX_WORD_LENGTH } from "./words";
-
-// export function getRandomWordLength(): number {
-//   return Math.floor(
-//     Math.random() * (MAX_WORD_LENGTH - MIN_WORD_LENGTH + 1) +
-//       MIN_WORD_LENGTH
-//   );
-// }

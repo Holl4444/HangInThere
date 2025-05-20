@@ -15,7 +15,7 @@ export async function fetchWord(): Promise<string> {
       err
     );
   }
-  return ''; // If no API word fallback to pre API called word.
+  return getRandomDbWord(); // If no API word fallback to pre API called word.
 }
 
 export async function getRandomApiWord(): Promise<string | null> {
@@ -40,7 +40,7 @@ export async function getRandomApiWord(): Promise<string | null> {
   }
 }
 
-export function getRandomWord(): string {
+export function getRandomDbWord(): string {
   return words[Math.floor(Math.random() * words.length)];
 }
 
