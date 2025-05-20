@@ -1,5 +1,5 @@
 import { getIndex } from './utils';
-import { MIN_WORD_LENGTH, MAX_WORD_LENGTH } from './words';
+import { MIN_WORD_LENGTH, MAX_WORD_LENGTH } from './wordsBackup';
 
 export interface WordObject {
   word: string;
@@ -11,14 +11,13 @@ export function validateWords(words: WordObject[]): string[] | null {
   const SCORE_THRESHOLD = 80000;
 
   for (const obj of words) {
-    const word = obj.word.toLowerCase();
+    const word = obj.word.toUpperCase();
     if (
-      /^[a-z]+$/.test(word) &&
+      /^[A-Z]+$/.test(word) &&
       !validWords.includes(word) &&
       obj.score > SCORE_THRESHOLD &&
       word.length >= MIN_WORD_LENGTH &&
       word.length <= MAX_WORD_LENGTH
-      
     ) {
       validWords.push(word);
     }

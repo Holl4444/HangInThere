@@ -1,4 +1,4 @@
-import { WordObject } from './wordsDatamuse';
+import { WordObject } from './wordValidateDmuse';
 
 const THEMES = [
   'cat',
@@ -39,7 +39,10 @@ export function getTheme(): string {
   return THEMES[getIndex(THEMES.length)];
 }
 
-export function handleErrorsDatamuse(response: Response, data: WordObject[]): boolean {
+export function handleErrorsDatamuse(
+  response: Response,
+  data: WordObject[]
+): boolean {
   if (response.status !== 200) {
     console.error(`Error ${response.status}: ${response.statusText}`);
     return false;

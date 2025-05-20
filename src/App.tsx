@@ -3,8 +3,8 @@ import { Cats, CatProps } from './Cats';
 import Cat from './Cat';
 import Keyboard from './Keyboard';
 import { clsx } from 'clsx'; //Helps with conditional CSS classes
-import { fetchWord } from './words';
-import wordnik from './wordnik';
+import getWord from './wordFlow';
+import { getRandomDbWord } from './wordsBackup';
 import { getFarewellText } from './utils';
 import Confetti from 'react-confetti';
 
@@ -28,19 +28,30 @@ export default function App() {
 
   // useEffect handles side-effects (outside normal rendering flow)
   useEffect(() => {
-    // Try to get themed word from API, but don't interrupt gameplay if it fails
+    let isMounted = true;
+
     async function loadInitialWord() {
-      const wordnikWord = await wordnik();
-      if (wordnikWord) {
-        setCurrentWord(wordnikWord);
-      } else {
-        const word = await fetchWord();
-        if (word) {
-          setCurrentWord(word); // Only update if receive valid API word.
+      try {
+        const word = await getWord();
+
+        if (isMounted) {
+          setCurrentWord(word);
+        }
+      } catch (err) {
+        console.error('Failed to load word: ', err);
+
+        if (isMounted) {
+          setCurrentWord(getRandomDbWord().toUpperCase());
         }
       }
     }
+
     loadInitialWord(); // dependency array
+
+    //Cleanup
+    return () => {
+      isMounted = false;
+    };
   }, []); // Just on first render (new game handled in resetGame())
 
   const wrongGuessCount = chosenLetters.filter(
@@ -122,14 +133,12 @@ export default function App() {
     setChosenLetters([]);
     setCurrentWord('Loading');
 
-    const wordnikWord = await wordnik();
-    if (wordnikWord) {
-      setCurrentWord(wordnikWord);
-    } else {
-      const word = await fetchWord();
-      if (word) {
-        setCurrentWord(word); // Only update if receive valid API word.
-      }
+    try {
+      const word = await getWord();
+      setCurrentWord(word);
+    } catch (err) {
+      console.error('Failed to load word on reset: ', err);
+      setCurrentWord(getRandomDbWord().toUpperCase());
     }
   }
 

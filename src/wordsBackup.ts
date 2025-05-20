@@ -1,30 +1,14 @@
 export const MIN_WORD_LENGTH = 5;
 export const MAX_WORD_LENGTH = 9;
 import { getTheme, handleErrorsDatamuse } from './utils';
-import { validateWords, selectFinalWord } from './wordsDatamuse';
+import { validateWords, selectFinalWord } from './wordValidateDmuse';
 
-export async function fetchWord(): Promise<string> {
-  try {
-    const apiWord = await getRandomApiWord();
-    if (apiWord) {
-      return apiWord.toUpperCase();
-    }
-    return getRandomDbWord().toUpperCase(); // If no API word fallback to pre API called word.
-  } catch (err) {
-    console.error(
-      'Error loading API word, falling back to local word list:',
-      err
-    );
-  }
-  return getRandomDbWord().toUpperCase();
-}
 
-export async function getRandomApiWord(): Promise<string | null> {
+export async function getDmuseWord(): Promise<string | null> {
   const theme = getTheme();
   const url = `https://api.datamuse.com/words?ml=${theme}&max=100`;
 
   try {
-    console.log(`Attempting Datamuse fetch`);
     const response = await fetch(url);
     const data = await response.json();
 
