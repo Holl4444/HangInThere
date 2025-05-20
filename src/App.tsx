@@ -23,11 +23,9 @@ export type HandleLetterClick = (
 export default function App() {
   const [catArray, setCatArray] = useState<CatProps[]>(Cats);
   // Show local word immediately for better UX
-  const [currentWord, setCurrentWord] = useState(() =>
-    getRandomWord().toUpperCase()
-  );
+  const [currentWord, setCurrentWord] = useState('');
   const [chosenLetters, setChosenLetters] = useState<Letter[]>([]);
-  
+
   // useEffect handles side-effects (outside normal rendering flow)
   useEffect(() => {
     // Try to get themed word from API, but don't interrupt gameplay if it fails
@@ -49,9 +47,12 @@ export default function App() {
     (letter) => !currentWord.includes(letter)
   ).length;
 
-  const isWin = currentWord
+  const isWin = currentWord.length > 3 && currentWord
     .split('')
-    .every((letter: Letter) => chosenLetters.includes(letter));
+    .every(
+      (letter: Letter) =>
+        chosenLetters.includes(letter) 
+    );
   const isLoss = wrongGuessCount > Cats.length - 2; // As the spider is there too
   const isGameOver = isWin || isLoss; // Keeps it clean instead of repeating isWin || isLoss. One prop to pass
 
@@ -120,7 +121,7 @@ export default function App() {
   async function resetGame() {
     setCatArray(Cats);
     setChosenLetters([]);
-    setCurrentWord(getRandomWord().toUpperCase());
+    setCurrentWord('');
 
     const wordnikWord = await wordnik();
     if (wordnikWord) {
@@ -225,8 +226,11 @@ export default function App() {
           Current word:
           {currentWord
             .split('')
-            .map((letter: Letter) =>
-              chosenLetters.includes(letter) ? letter + '.' : 'blank.' // The dot helps screen readers read letters (or 'blank.'s) aloud separately
+            .map(
+              (letter: Letter) =>
+                chosenLetters.includes(letter)
+                  ? letter + '.'
+                  : 'blank.' // The dot helps screen readers read letters (or 'blank.'s) aloud separately
             )
             .join('')}
         </p>
