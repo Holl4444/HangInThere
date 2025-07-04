@@ -32,11 +32,12 @@ export default async function fetchWordnik(): Promise<string | null> {
     const response = await fetch(wordnikUrl);
     const wordnikArray: WordnikResponse[] = await response.json();
     if (!wordnikArray || wordnikArray.length === 0) return null;
-    const regex = /^[^-'\s]+$/; // No hyphens or spaces
+    const regex = /^[a-zA-Z]+$/; // No hyphens or spaces
     const cleanWordnikArray: WordnikResponse[] = wordnikArray.filter(
       (word) => regex.test(word.word)
     );
     if (cleanWordnikArray.length > 1) {
+      console.log(cleanWordnikArray);
       wordnikCache = cleanWordnikArray.slice(1); // stash remaining words
     }
     return cleanWordnikArray[0].word.toUpperCase(); // return the first one
