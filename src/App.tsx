@@ -23,7 +23,7 @@ export type HandleLetterClick = (
 export default function App() {
   const [catArray, setCatArray] = useState<CatProps[]>(Cats);
   // Show local word immediately for better UX
-  const [currentWord, setCurrentWord] = useState('Loading');
+  const [currentWord, setCurrentWord] = useState('');
   const [chosenLetters, setChosenLetters] = useState<Letter[]>([]);
 
   // useEffect handles side-effects (outside normal rendering flow)
@@ -40,9 +40,9 @@ export default function App() {
       } catch (err) {
         console.error('Failed to load word: ', err);
 
-        if (isMounted) {
-          setCurrentWord(getRandomDbWord().toUpperCase());
-        }
+        // if (isMounted) {
+        setCurrentWord(getRandomDbWord().toUpperCase());
+        // }
       }
     }
 
@@ -144,7 +144,7 @@ export default function App() {
 
   function renderMsg() {
     const loadingMsg = getLoadingText();
-    if (currentWord === 'Loading') {
+    if (currentWord === 'Loading' || currentWord === '') {
       return (
         <>
           <h2>Loading</h2>
