@@ -205,6 +205,7 @@ img {
   font-size: 1.5rem;
   column-gap: 0.2rem;
   margin: 1.5rem;
+  min-height: 2.5rem;
   max-width: 100%;
 }
 
