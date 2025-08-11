@@ -340,7 +340,6 @@ export default function App() {
             name="spellingList"
             id="spellingList"
             placeholder={`• Hirsute\n• Fluffy\n• Arachnid`}
-            defaultValue={`• Arachnid\n• \n• \n• \n• \n• \n• \n• \n• \n• `}
             onChange={(e) => setTextAreaInput(e.target.value)}
             value={textareaInput}
           ></textarea>
