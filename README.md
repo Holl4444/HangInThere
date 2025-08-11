@@ -92,6 +92,7 @@ Completed:
 ✔️ Add spelling tests for user word lists.
 
 To Do:
+- Add word hint.
 - Add new word option during gameplay.
 - Add turn counter for spider warning.
 - Enhance animations and transitions.
