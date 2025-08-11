@@ -383,6 +383,10 @@ button.keys:disabled {
  padding: 0.75em;
 }
 
+.popup.hidden {
+  display: none;
+}
+
 .popupBtnDiv {
   display: flex;
   justify-content: center;
