@@ -1,4 +1,4 @@
-import { WordObject } from './wordValidateDmuse';
+import { WordObject } from './services/wordValidateDmuse';
 
 const THEMES = [
   'cat',
@@ -67,15 +67,15 @@ export function handleErrorsDatamuse(
   return true;
 }
 
-export function getLoadingText () {
+export function getLoadingText() {
   const options = [
     `Cleaning litterboxes...`,
     `Topping up water bowls...`,
     `Petting cats...`,
     `Preparing spider bite remedy...`,
     `Triple locking spider cage...`,
-    `Playing with cats...`
-  ]
+    `Playing with cats...`,
+  ];
   const randomIndex = Math.floor(Math.random() * options.length);
   return options[randomIndex];
 }

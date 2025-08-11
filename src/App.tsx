@@ -3,8 +3,8 @@ import { Cats, CatProps } from './Cats';
 import Cat from './Cat';
 import Keyboard from './Keyboard';
 import { clsx } from 'clsx'; //Helps with conditional CSS classes
-import getWord from './wordFlow';
-import { getRandomDbWord } from './wordsBackup';
+import getWord from './services/wordFlow.ts';
+import { getRandomDbWord } from './services/wordsBackup';
 import { getFarewellText, getLoadingText } from './utils';
 import Confetti from 'react-confetti';
 

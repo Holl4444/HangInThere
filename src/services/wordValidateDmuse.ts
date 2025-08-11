@@ -1,4 +1,4 @@
-import { getIndex } from './utils';
+import { getIndex } from '../utils';
 import { MIN_WORD_LENGTH, MAX_WORD_LENGTH } from './wordsBackup';
 
 export interface WordObject {

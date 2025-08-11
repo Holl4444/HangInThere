@@ -1,6 +1,6 @@
 export const MIN_WORD_LENGTH = 5;
 export const MAX_WORD_LENGTH = 9;
-import { getTheme, handleErrorsDatamuse } from './utils';
+import { getTheme, handleErrorsDatamuse } from '../utils';
 import { validateWords, selectFinalWord } from './wordValidateDmuse';
 
 
