@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Cats, CatProps } from './data/Cats.ts';
 import Cat from './components/Cat';
 import Keyboard from './components/Keyboard.tsx';
@@ -28,34 +28,42 @@ export default function App() {
   const [isPopup, setIsPopup] = useState<boolean>(false);
   const [textareaInput, setTextAreaInput] = useState('');
   const [spellingList, setSpellingList] = useState<string[]>([]);
+  const [isTestingMode, setIsTestingMode] = useState<boolean>(false);
+
+    const resetGame = useCallback(async () => {
+      setCatArray(Cats);
+      setChosenLetters([]);
+      setCurrentWord('Loading');
+
+      let word = '';
+
+      if (isTestingMode && spellingList.length > 0) {
+        word =
+          spellingList[
+            Math.floor(Math.random() * spellingList.length)
+          ].toUpperCase();
+      } else {
+        try {
+          word = await getWord();
+        } catch (err) {
+          console.error('Failed to load word on reset: ', err);
+          word = getRandomDbWord().toUpperCase();
+        }
+      }
+      setCurrentWord(word);
+    }, [isTestingMode, spellingList]);
+
 
   // useEffect handles side-effects (outside normal rendering flow)
   useEffect(() => {
-    let isMounted = true;
+    resetGame();
+  }, [resetGame]);
 
-    async function loadInitialWord() {
-      try {
-        const word = await getWord();
-
-        if (isMounted) {
-          setCurrentWord(word);
-        }
-      } catch (err) {
-        console.error('Failed to load word: ', err);
-
-        // if (isMounted) {
-        setCurrentWord(getRandomDbWord().toUpperCase());
-        // }
-      }
+  useEffect(() => {
+    if (isTestingMode && spellingList.length > 0) {
+      resetGame();
     }
-
-    loadInitialWord(); // dependency array
-
-    //Cleanup
-    return () => {
-      isMounted = false;
-    };
-  }, []); // Just on first render (new game handled in resetGame())
+  }, [isTestingMode, spellingList, resetGame]);
 
   const wrongGuessCount = chosenLetters.filter(
     (letter) => !currentWord.includes(letter)
@@ -131,28 +139,6 @@ export default function App() {
     }
   };
 
-  async function resetGame() {
-    setCatArray(Cats);
-    setChosenLetters([]);
-    setCurrentWord('Loading');
-
-    let word = '';
-
-    if (spellingList.length > 0) {
-      word = spellingList[Math.floor(Math.random() * spellingList.length)].toUpperCase()
-    } else {
-      try {
-      word = await getWord();
-        setCurrentWord(word);
-      } catch (err) {
-        console.error('Failed to load word on reset: ', err);
-      word = getRandomDbWord().toUpperCase();
-      }
-    }
-    
-    setCurrentWord(word)
-  }
-
   function renderMsg() {
     const loadingMsg = getLoadingText();
     if (currentWord === 'Loading' || currentWord === '') {
@@ -213,9 +199,15 @@ export default function App() {
       .filter((line) => line.length > 0);
 
     setSpellingList(spellingList);
+    setIsTestingMode(true);
     setIsPopup(false);
     console.log(spellingList);
-    resetGame()
+  }
+
+  function endTest() {
+    setSpellingList([]);
+    setIsTestingMode(false);
+    resetGame();
   }
 
   return (
@@ -313,15 +305,7 @@ export default function App() {
           New Game
         </button>
 
-        <button className="testBtn" onClick={() => {
-          // If we are testing end testing else allow adding spelling list
-          if (spellingList.length > 0) {
-            setSpellingList([]);
-            resetGame();
-          } else {
-            showPopUp();
-          }
-        }}>
+        <button className="testBtn" onClick={isTestingMode ? endTest : showPopUp}>
           {/* Switch between button modes*/}
           {spellingList.length > 0 ? 'End Test' : 'Test Me'}
         </button>
