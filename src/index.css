@@ -261,7 +261,8 @@ button.keys {
   box-shadow: 0px -2px 11px 0px #4e434e;
 }
 
-button.new-game {
+button.new-game,
+button.testBtn {
   width: 6.2rem;
   height: 2.5rem;
   padding: 0.3rem;
@@ -272,6 +273,12 @@ button.new-game {
   border-radius: 5px;
   box-shadow: 0px -2px 11px 0px #4e434e;
   margin-bottom: 0.3rem;
+  text-shadow: 0 0 4px grey;
+}
+
+button.testBtn {
+  margin-top: 0.5em;
+  background: linear-gradient(0deg, #ffc9b9 0%, #c99281 40%);
 }
 
 .hidden {
@@ -279,12 +286,14 @@ button.new-game {
 }
 
 button.keys:hover:enabled,
-button.new-game:hover:enabled {
+button.new-game:hover:enabled,
+button.testBtn:hover {
   filter: brightness(110%);
 }
 
 button.keys:before,
-button.new-game:before {
+button.new-game:before,
+button.testBtn:before {
   height: 0%;
   width: 2px;
 }
@@ -294,7 +303,8 @@ button.keys:active:enabled {
     inset -4px -4px 6px 0 #ffffff33, inset 4px 4px 6px 0 #3a1d04;
 }
 
-button.new-game:active:enabled {
+button.new-game:active:enabled,
+button.testBtn:active {
   box-shadow: 4px 4px 6px 0 #7c6b7c, -4px -4px 6px 0 #747d8880,
     inset -4px -4px 6px 0 #ffffff33, inset 4px 4px 6px 0 #2d3036;
 }
@@ -419,10 +429,12 @@ button.keys:disabled {
     grid-template-columns: repeat(7, 2.5rem);
     row-gap: 0.3rem;
     column-gap: 0.3rem;
-    justify-content: center;  /* Centers the grid content */
+    justify-content: center; /* Centers the grid content */
   }
-    .upper-keys > button:nth-last-child(-n+6) {
-    transform: translateX(calc((2.5rem + 0.3rem) / 2));  /* Move last 6 buttons right by one column + gap */
+  .upper-keys > button:nth-last-child(-n + 6) {
+    transform: translateX(
+      calc((2.5rem + 0.3rem) / 2)
+    ); /* Move last 6 buttons right by one column + gap */
   }
 
   .lower-keys {
@@ -451,7 +463,6 @@ button.keys:disabled {
     width: 3.6rem;
     height: 3.6rem;
   }
-
 }
 
 @media only screen and (max-width: 375px) {
@@ -464,7 +475,6 @@ button.keys:disabled {
   .gameBoard {
     height: 100vh;
   }
-
 
   header > h1 {
     font-size: 2.6rem;
@@ -550,22 +560,24 @@ button.keys:disabled {
     margin: 0.3em;
   }
 
-   button.keys {
+  button.keys {
     height: 2rem;
     width: 2rem;
     font-size: 0.9rem;
   }
-  
+
   .upper-keys {
     grid-template-columns: repeat(7, 2rem);
     row-gap: 0.3rem;
     column-gap: 0.3rem;
   }
-  
-  .upper-keys > button:nth-last-child(-n+6) {
-    transform: translateX(calc((2rem + 0.3rem) / 2));  /* Adjusted for smaller keys */
+
+  .upper-keys > button:nth-last-child(-n + 6) {
+    transform: translateX(
+      calc((2rem + 0.3rem) / 2)
+    ); /* Adjusted for smaller keys */
   }
-  
+
   .lower-keys {
     column-gap: 0.3rem;
   }
