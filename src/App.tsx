@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Cats, CatProps } from './Cats';
+import { Cats, CatProps } from './data/Cats.ts';
 import Cat from './components/Cat';
 import Keyboard from './components/Keyboard.tsx';
 import { clsx } from 'clsx'; //Helps with conditional CSS classes
