@@ -265,15 +265,18 @@ export default function App() {
           isGameOver={isGameOver}
         />
       </section>
-      <button
-        className={clsx({
-          'new-game': true,
-          hidden: !isGameOver,
-        })}
-        onClick={resetGame}
-      >
-        New Game
+      
+        <button
+          className={clsx({
+            'new-game': true,
+            hidden: !isGameOver,
+          })}
+          onClick={resetGame}
+        >
+          New Game
       </button>
+      
+        <button className="testBtn">Test Me</button>
     </section>
   );
 }
