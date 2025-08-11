@@ -228,7 +228,7 @@ img {
 }
 
 .keyboard {
-  margin: 0.4rem 0.6rem 1.5em;
+  margin: 0.4rem 0.6rem 1em;
   max-width: 100%;
   display: flex;
   flex-direction: column;
@@ -261,10 +261,12 @@ button.keys {
   color: #fefee3;
   font-size: 1.1rem;
   box-shadow: 0px -2px 11px 0px #4e434e;
+  text-shadow: 0 0 4px #70451c;
 }
 
-button.new-game,
-button.testBtn {
+button {
+  display: block;
+  margin: 0 auto;
   width: 6.2rem;
   height: 2.5rem;
   padding: 0.3rem;
@@ -275,12 +277,31 @@ button.testBtn {
   border-radius: 5px;
   box-shadow: 0px -2px 11px 0px #4e434e;
   margin-bottom: 0.3rem;
-  text-shadow: 0 0 4px grey;
+  font-family: 'Open Sans', serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.new-game {
+  width: 9.2rem;
+  text-shadow: 0 0 3px #271402;
 }
 
 button.testBtn {
-  margin-top: 0.5em;
-  background: linear-gradient(0deg, #ffc9b9 0%, #c99281 40%);
+  height: 2rem;
+  width: 9.2rem;
+  margin-top: 0.7em;
+  background: linear-gradient(0deg, #fefee3 0%, #dadabf 40%);
+  color: #271402;
+  text-shadow: 0 0 4px #fefee3;
+}
+
+.popupBtn {
+  background: linear-gradient(0deg, #e49c59 0%, #e48832 40%);
+  text-shadow: 0 0 3px #6e3805;
+  /* Negate the display block from regular btns */
+  display: inline-block;
+  margin: 0;
 }
 
 .hidden {
@@ -311,11 +332,6 @@ button.testBtn:active {
     inset -4px -4px 6px 0 #ffffff33, inset 4px 4px 6px 0 #2d3036;
 }
 
-button {
-  font-family: 'Open Sans', serif;
-  font-weight: 600;
-  cursor: pointer;
-}
 
 button.keys.letter-right {
   background: linear-gradient(0deg, #7cdba5 0%, #4c956c 40%);
@@ -329,6 +345,49 @@ button.keys.letter-wrong {
 button.keys:disabled {
   cursor: grabbing;
   opacity: 0.5;
+}
+
+.popupCovered {
+  position: relative;
+}
+
+.popUp {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  row-gap: 1em;
+  width: 100%;
+  height: 100%;
+  background-color: #fefee3;
+  color: #271402;
+  padding: 1em;
+  border-radius: 0.2rem;
+  filter: drop-shadow(1px 2px 5px #352d35)
+}
+
+.popUp > textarea {
+ min-width: 100%;
+ min-height: 77%;
+ max-height: 77%;
+ background-color: #fefee3;
+ color: #271402;
+ font-weight: 600;
+ font-size: 1rem;
+ line-height: 2em;
+ outline: none;
+ border: 2px solid #e48832;
+ border-radius: 0.2rem;
+ padding: 0.75em;
+}
+
+.popupBtnDiv {
+  display: flex;
+  justify-content: center;
+  column-gap: 1em;
+  align-items: center;
 }
 
 /* How to disable any div (not just inputs /buttons etc) */
@@ -360,6 +419,7 @@ button.keys:disabled {
   .lower-keys {
     column-gap: 0.3rem;
   }
+
 }
 
 @media only screen and (max-width: 450px) {
@@ -467,6 +527,10 @@ button.keys:disabled {
   .cats > button {
     width: 3.6rem;
     height: 3.6rem;
+  }
+
+  button.new-game, button.testBtn {
+    min-width: 100%;
   }
 }
 
