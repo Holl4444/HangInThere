@@ -207,7 +207,10 @@ export default function App() {
         className={clsx({
           'msg-container': true,
           hidden:
-            !isGameOver && !isInputWrong && currentWord !== 'Loading',
+            !isGameOver &&
+            !isInputWrong &&
+            currentWord !== 'Loading' &&
+            currentWord !== '',
           fail: isLoss,
           win: isWin,
         })}
