@@ -383,7 +383,7 @@ button.keys:disabled {
  padding: 0.75em;
 }
 
-.popup.hidden {
+.popUp.hidden {
   display: none;
 }
 
