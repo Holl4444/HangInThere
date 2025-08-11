@@ -4,7 +4,7 @@ import Cat from './components/Cat';
 import Keyboard from './components/Keyboard.tsx';
 import { clsx } from 'clsx'; //Helps with conditional CSS classes
 import getWord from './services/wordFlow.ts';
-import { getRandomDbWord } from './services/wordsBackup';
+import { getRandomDbWord, MAX_WORD_LENGTH } from './services/wordsBackup';
 import { getFarewellText, getLoadingText } from './utils';
 import Confetti from 'react-confetti';
 
@@ -196,7 +196,7 @@ export default function App() {
       // Get each word ( separated by a newline or space)
       .split(/[\s\n]+/)
       .map((line) => line.replace(/[^A-za-z]/g, '').trim())
-      .filter((line) => line.length > 0);
+      .filter((line) => line.length > 0 && line.length <= MAX_WORD_LENGTH);
 
     setSpellingList(spellingList);
     setIsTestingMode(true);
@@ -317,7 +317,7 @@ export default function App() {
           })}
         >
           <label htmlFor="spellingList">
-            Add the words you would like to practice...
+            Add the words you would like to practice... (max length 9)
           </label>
           <textarea
             className="open-sans-reg"
