@@ -1,14 +1,19 @@
 import Key from './Key';
-import { HandleLetterClick } from './App';
+import { HandleLetterClick } from '../App';
 
-export interface KeyboardProps{    
-  fn: HandleLetterClick
-  chosen: string[],
+export interface KeyboardProps {
+  fn: HandleLetterClick;
+  chosen: string[];
   word: string;
-  isGameOver: boolean,
+  isGameOver: boolean;
 }
 
-export default function Keyboard({fn, chosen, word, isGameOver}: KeyboardProps) { 
+export default function Keyboard({
+  fn,
+  chosen,
+  word,
+  isGameOver,
+}: KeyboardProps) {
   const alphabet = 'abcdefghijklmnopqrstuvwxyz'.toUpperCase();
   const upperKeys = alphabet
     .slice(0, -6)

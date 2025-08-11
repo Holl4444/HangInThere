@@ -1,5 +1,5 @@
 import { clsx } from 'clsx'; // Allows conditional classNaming
-import { HandleLetterClick } from './App';
+import { HandleLetterClick } from '../App';
 interface KeyProps {
   fn: HandleLetterClick;
   name: string;

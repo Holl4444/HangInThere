@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Cats, CatProps } from './Cats';
-import Cat from './Cat';
-import Keyboard from './Keyboard';
+import Cat from './components/Cat';
+import Keyboard from './components/Keyboard.tsx';
 import { clsx } from 'clsx'; //Helps with conditional CSS classes
 import getWord from './services/wordFlow.ts';
 import { getRandomDbWord } from './services/wordsBackup';

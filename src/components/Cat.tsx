@@ -1,4 +1,4 @@
-import { CatProps } from './Cats';
+import { CatProps } from '../Cats';
 
 export default function Cat({
   backgroundColor,
