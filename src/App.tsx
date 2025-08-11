@@ -26,6 +26,8 @@ export default function App() {
   const [currentWord, setCurrentWord] = useState('');
   const [chosenLetters, setChosenLetters] = useState<Letter[]>([]);
   const [isPopup, setIsPopup] = useState<boolean>(false);
+  const [textareaInput, setTextAreaInput] = useState('');
+  const [spellingList, setSpellingList] = useState<string[]>([]);
 
   // useEffect handles side-effects (outside normal rendering flow)
   useEffect(() => {
@@ -134,13 +136,21 @@ export default function App() {
     setChosenLetters([]);
     setCurrentWord('Loading');
 
-    try {
-      const word = await getWord();
-      setCurrentWord(word);
-    } catch (err) {
-      console.error('Failed to load word on reset: ', err);
-      setCurrentWord(getRandomDbWord().toUpperCase());
+    let word = '';
+
+    if (spellingList.length > 0) {
+      word = spellingList[Math.floor(Math.random() * spellingList.length)].toUpperCase()
+    } else {
+      try {
+      word = await getWord();
+        setCurrentWord(word);
+      } catch (err) {
+        console.error('Failed to load word on reset: ', err);
+      word = getRandomDbWord().toUpperCase();
+      }
     }
+    
+    setCurrentWord(word)
   }
 
   function renderMsg() {
@@ -193,6 +203,19 @@ export default function App() {
 
   function hidePopUp() {
     setIsPopup(false);
+  }
+
+  function getTestList() {
+    const spellingList = textareaInput
+      // Get each word ( separated by a newline or space)
+      .split(/[\s\n]+/)
+      .map((line) => line.replace(/[^A-za-z]/g, '').trim())
+      .filter((line) => line.length > 0);
+
+    setSpellingList(spellingList);
+    setIsPopup(false);
+    console.log(spellingList);
+    resetGame()
   }
 
   return (
@@ -290,12 +313,25 @@ export default function App() {
           New Game
         </button>
 
-        <button className="testBtn" onClick={showPopUp}>Test Me</button>
+        <button className="testBtn" onClick={() => {
+          // If we are testing end testing else allow adding spelling list
+          if (spellingList.length > 0) {
+            setSpellingList([]);
+            resetGame();
+          } else {
+            showPopUp();
+          }
+        }}>
+          {/* Switch between button modes*/}
+          {spellingList.length > 0 ? 'End Test' : 'Test Me'}
+        </button>
 
-        <section className={clsx({
-            'popUp': true,
+        <section
+          className={clsx({
+            popUp: true,
             hidden: !isPopup,
-          })}>
+          })}
+        >
           <label htmlFor="spellingList">
             Add the words you would like to practice...
           </label>
@@ -304,11 +340,22 @@ export default function App() {
             name="spellingList"
             id="spellingList"
             placeholder={`• Hirsute\n• Fluffy\n• Arachnid`}
-            defaultValue={`• eg. Arachnid\n• \n• \n• \n• \n• \n• \n• \n• \n• `}
+            defaultValue={`• Arachnid\n• \n• \n• \n• \n• \n• \n• \n• \n• `}
+            onChange={(e) => setTextAreaInput(e.target.value)}
+            value={textareaInput}
           ></textarea>
           <div className="popupBtnDiv">
-            <button className="popupBtn">Test</button>
-            <button className="popupBtn" onClick={hidePopUp}>Back</button>
+            <button
+              id="submitList"
+              className="popupBtn"
+              role="submit"
+              onClick={getTestList}
+            >
+              Test
+            </button>
+            <button className="popupBtn" onClick={hidePopUp}>
+              Back
+            </button>
           </div>
         </section>
       </section>
