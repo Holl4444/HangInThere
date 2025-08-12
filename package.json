@@ -14,7 +14,7 @@
     "@sentry/vite-plugin": "^3.1.2",
     "clsx": "^2.1.1",
     "react": "^19.0.0",
-    "react-confetti": "^6.2.2",
+    "react-confetti": "^6.4.0",
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
